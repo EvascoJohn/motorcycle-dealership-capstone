@@ -6,15 +6,15 @@ use Filament\Support\Contracts\HasLabel;
 
 enum EngineTypes:string implements HasLabel
 {
-    case STROKE4 = "Four (4) Stroke";
-    case STROKE2 = "Two (2) Stroke";
+    case FOUR_STROKE = "Four (4) Stroke";
+    case TWO_STROKE = "Two (2) Stroke";
     case OTHERS = "Other(s)";
 
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::STROKE2 => "Two (2) Stroke",
-            self::STROKE4 => "Four (4) Stroke",
+            self::FOUR_STROKE => "Four (4) Stroke",
+            self::TWO_STROKE => "Two (2) Stroke",
             self::OTHERS => "Other(s)",
         };
     }
