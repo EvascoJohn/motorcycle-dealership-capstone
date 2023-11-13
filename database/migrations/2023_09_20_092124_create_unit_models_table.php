@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("image_file")->nullable();
             $table->decimal("price")->nullable();
 
-            $table->enEngineTypesum("body_type", Enums\UnitTypes::values())->nullable();
+            $table->enum("body_type", Enums\UnitTypes::values())->nullable();
             // $table->enum("engine_type", Enums\EngineTypes::values())->nullable();
             $table->decimal("displacement")->nullable();
             $table->decimal("engine_oil")->nullable();
