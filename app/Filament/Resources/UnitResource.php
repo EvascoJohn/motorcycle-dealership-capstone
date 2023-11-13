@@ -45,6 +45,7 @@ class UnitResource extends Resource
                         if($state == null){
                             $component->state("");    
                         }
+                        dd($state);
                         $component->state(Str::upper($state));
                     })
                     ->mask(Rawjs::make(<<<'JS'
