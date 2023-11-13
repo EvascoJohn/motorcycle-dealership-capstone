@@ -46,9 +46,9 @@ class ViewCustomerApplication extends ViewRecord
                     ->slideOver()
                     ->requiresConfirmation()
                     ->form([
-                        Forms\Components\TextArea::make('resubmission_note')
-                        ->required()
-                        ->maxLength(255),
+                        Forms\Components\MarkdownEditor::make('resubmission_note')
+                            ->required()
+                            ->maxLength(255),
                     ])
                     ->action(function(array $data){
                         $this->record->setStatusTo(ApplicationStatus::RESUBMISSION_STATUS);
