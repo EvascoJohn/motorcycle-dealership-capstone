@@ -97,13 +97,7 @@ class UnitModelResource extends Resource
                     ->required()
                     ->columnSpan(2),
                 Forms\Components\TextInput::make('price')
-                    ->mask(Rawjs::make(<<<'JS'
-                        function(input, e, value, maxLength) {
-                            if (typeof value !== 'string') {
-                                $money(input, '.', ',', 4);
-                            }
-                        }
-                    JS))
+                    ->inputmode('decimal')
                     ->required()
                     ->columnSpan(1),
                 static::getUnitModelDetails(),
