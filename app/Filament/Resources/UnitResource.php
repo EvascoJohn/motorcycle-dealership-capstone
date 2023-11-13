@@ -48,7 +48,6 @@ class UnitResource extends Resource
                         '999aaa99a99999'
                     JS))
                     ->columnSpan(1)
-                    ->numeric()
                     ->required(),
             Forms\Components\Textarea::make('notes')
                     ->columnSpan(2),      

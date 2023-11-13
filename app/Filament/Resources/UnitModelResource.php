@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UnitModelResource\Pages;
 use App\Filament\Resources\UnitModelResource\RelationManagers;
 use App\Models\Branch;
+use App\Enums;
 use App\Models\Unit;
 use App\Models\UnitModel;
 use Filament\Forms;
@@ -15,6 +16,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Support\RawJs;
 
 class UnitModelResource extends Resource
 {
@@ -23,6 +25,66 @@ class UnitModelResource extends Resource
     protected static ?string $navigationGroup = 'Inventory Module';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function getUnitModelDetails(): Forms\Components\Component
+    {
+        return Forms\Components\Group::make([
+            Forms\Components\Select::make('body_type')
+                ->columnSpan(1)
+                ->options(Enums\UnitTypes::class)
+                ->required(),
+            Forms\Components\TextInput::make('engine_type')
+                ->maxLength(255)
+                ->options(Enums\EngineTypes::class)
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\TextInput::make('displacement')
+                ->mask(Rawjs::make(<<<'JS'
+                    '9999'
+                JS))
+                ->suffix('cc')
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\TextInput::make('engine_oil')
+                ->mask(Rawjs::make(<<<'JS'
+                    '99'
+                JS))
+                ->suffix('L')
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\TextInput::make('starting_system')
+                ->options(Enums\StartingSystemTypes::class)
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\TextInput::make('transmission')
+                ->options(Enums\TransmissionTypes::class)
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\TextInput::make('fuel_tank_capacity')
+                ->inputMode('decimal')
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\TextInput::make('net_weight')
+                ->inputMode('decimal')
+                ->suffix('kg')
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\TextInput::make('dimension')
+                ->maxLength(50)
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\Select::make('colors')
+                ->multiple()
+                ->options(Enums\UnitColors::class)
+                ->required()
+                ->columnSpan(1),
+            Forms\Components\MarkdownEditor::make('description')
+                ->maxLength(255)
+                ->columnSpan(2)
+                ->required()
+                ->toolbarButtons([]),
+        ]);
+    }
 
     public static function getUnitDetailsComponent(): Forms\Components\Component
     {
@@ -39,16 +101,7 @@ class UnitModelResource extends Resource
                     ->maxLength(255)
                     ->required()
                     ->columnSpan(1),
-                Forms\Components\TextInput::make('body_type')
-                    ->maxLength(255)
-                    ->required()
-                    ->columnSpan(1),
-                Forms\Components\MarkdownEditor::make('description')
-                    ->maxLength(255)
-                    ->columnSpan(2)
-                    ->required()
-                    ->toolbarButtons([
-                    ]),
+                static::getUnitModelDetails(),
         ]);
     }
 

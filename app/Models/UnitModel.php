@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Filament\Support\RawJs;
 
 class UnitModel extends Model implements HasMedia
 {
@@ -16,10 +17,17 @@ class UnitModel extends Model implements HasMedia
     protected $fillable = [
         'model_name',
         'image_file',
-        'brand',
-        'colors',
         'price',
         'body_type',
+        'engine_type',
+        'displacement',
+        'engine_oil',
+        'starting_system',
+        'trasmission',
+        'fuel_tank_capacity',
+        'net_weight',
+        'dimension',
+        'colors',
         'description',
     ];
 
