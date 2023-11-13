@@ -752,12 +752,15 @@ class CustomerApplicationResource extends Resource
     {
         return $form
         ->schema([
-                Forms\Components\Select::make("branch_id")
-                ->options([
-                    Models\Branch::query()->where("id", auth()->user()->branch_id)->first()->id => 
-                    Models\Branch::query()->where("id", auth()->user()->branch_id)->first()->full_address,
-                ])
-                ->preload(),
+                // Forms\Components\Select::make("branch_id")
+                // ->options([
+                //     Models\Branch::query()->where("id", auth()->user()->branch_id)->first()->id => 
+                //     Models\Branch::query()->where("id", auth()->user()->branch_id)->first()->full_address,
+                // ])
+                // ->preload(),
+
+                Forms\Components\Placeholder::make('Branch')
+                ->content(Models\Branch::query()->where("id", auth()->user()->branch_id)->first()->full_address),
                 Forms\Components\Wizard::make([
                         Forms\Components\Wizard\Step::make('Unit')
                                 ->schema([
