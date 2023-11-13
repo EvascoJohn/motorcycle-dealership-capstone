@@ -14,6 +14,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Support\RawJs;
 
 class UnitResource extends Resource
 {
@@ -39,7 +40,10 @@ class UnitResource extends Resource
                     ->columnSpan(1)
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
-                    ->rules(['required', 'max:2'])
+                    ->formatStateUsing(fn (string $state): string => ucwords($state))
+                    ->mask(Rawjs::make(<<<'JS'
+                        $input.startsWith('34') || $input.startsWith('37') ? '999 aaa 99 a 99999'
+                    JS))
                     ->columnSpan(1)
                     ->numeric()
                     ->required(),
