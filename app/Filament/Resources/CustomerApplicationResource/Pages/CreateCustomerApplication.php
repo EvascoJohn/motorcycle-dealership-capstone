@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class CreateCustomerApplication extends CreateRecord
 {
+
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getCancelFormAction(),
+        ];
+    }
     protected static string $resource = CustomerApplicationResource::class;
 
     protected function mutateFormDataBeforeCreate(array $data): array
