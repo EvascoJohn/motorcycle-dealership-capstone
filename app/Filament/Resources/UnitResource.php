@@ -41,7 +41,6 @@ class UnitResource extends Resource
                         'aaaaaaaa9aa999999'
                     JS))
                     ->columnSpan(1)
-                    ->numeric()
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
                     ->mask(Rawjs::make(<<<'JS'
