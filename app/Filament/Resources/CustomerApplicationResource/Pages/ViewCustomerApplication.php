@@ -46,7 +46,7 @@ class ViewCustomerApplication extends ViewRecord
                     ->slideOver()
                     ->requiresConfirmation()
                     ->form([
-                        Forms\Components\MarkdownEditor::make('resubmission_note')
+                        Forms\Components\Textarea::make('resubmission_note')
                             ->required()
                             ->maxLength(255),
                     ])
@@ -132,7 +132,7 @@ class ViewCustomerApplication extends ViewRecord
                     }
                 )
                 ->form([
-                    Forms\Components\TextArea::make('reposession_note')
+                    Forms\Components\Textarea::make('reposession_note')
                             ->label('Note'),
                     Forms\Components\TextInput::make('assumed_by_firstname')
                             ->label('First name'),
