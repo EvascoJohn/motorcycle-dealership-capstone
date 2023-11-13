@@ -15,7 +15,7 @@ class PagePolicy
     public function viewAny(User $user): bool
     {
         return $user->hasAnyRole(
-                                    'branch-manager',
+                                    'admin',
                                 );
     }
 
@@ -25,7 +25,7 @@ class PagePolicy
     public function view(User $user, Page $page): bool
     {
                 return $user->hasAnyRole(
-                                    'branch-manager',
+                                    'admin',
                                 );
     }
 
@@ -35,7 +35,7 @@ class PagePolicy
     public function create(User $user): bool
     {
                 return $user->hasAnyRole(
-                                    'branch-manager',
+                                    'admin',
                                 );
     }
 
