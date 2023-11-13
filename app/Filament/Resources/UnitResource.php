@@ -65,7 +65,7 @@ class UnitResource extends Resource
                             ->columnSpan(2)
                             ->label('Current Branch')
                             ->content(fn ():string => Branch::query()
-                                                        ->where('id', auth()->user()->branch_id)->first()->full_address)
+                                    ->where('id', auth()->user()->branch_id)->first()->full_address)
                         ])
                         ->columnSpan(1),
             ])
