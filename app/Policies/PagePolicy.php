@@ -10,6 +10,7 @@ class PagePolicy
 {
     /**
      * Determine whether the user can view any models.
+     * Test
      */
     public function viewAny(User $user): bool
     {
