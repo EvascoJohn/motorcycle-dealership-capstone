@@ -112,15 +112,15 @@ class UnitModelResource extends Resource
     {
         return $form
             ->schema([
-                static::getImportantDetailsComponent()->columnSpan(3),
+                static::getImportantDetailsComponent()->columnSpan(2),
                 Forms\Components\Placeholder::make('branch')
-                ->columns(3)
+                ->columns(1)
                 ->label('Current Branch')
                 ->content(fn ():string => Branch::query()
                 ->where('id', auth()->user()->branch_id)->first()->full_address),
-                static::getUnitModelDetails()->columnSpan(3),
+                static::getUnitModelDetails()->columnSpan(2),
             ])
-            ->columns(6);
+            ->columns(3);
     }
 
     public static function table(Table $table): Table
