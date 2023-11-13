@@ -41,7 +41,10 @@ class UnitResource extends Resource
                     ->columnSpan(1)
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
-                    ->afterStateHydrated(function (Forms\Components\TextInput $component, string $state) {
+                    ->afterStateHydrated(function (Forms\Components\TextInput $component, string|null $state) {
+                        if($state == null){
+                            $component->state("");    
+                        }
                         $component->state(Str::upper($state));
                     })
                     ->mask(Rawjs::make(<<<'JS'
