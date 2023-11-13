@@ -23,7 +23,7 @@ return new class extends Migration
             $table->decimal("displacement")->nullable();
             $table->decimal("engine_oil")->nullable();
             $table->enum("starting_system", Enums\StartingSystemTypes::values())->nullable();
-            $table->enum("trasmission", Enums\TransmissionTypes::values())->nullable();
+            $table->enum("transmission", Enums\TransmissionTypes::values())->nullable();
             $table->decimal("fuel_tank_capacity")->nullable();
             $table->decimal("net_weight")->nullable();
             $table->string("dimension")->nullable();

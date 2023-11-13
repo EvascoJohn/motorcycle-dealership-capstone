@@ -23,7 +23,7 @@ class UnitModel extends Model implements HasMedia
         'displacement',
         'engine_oil',
         'starting_system',
-        'trasmission',
+        'transmission',
         'fuel_tank_capacity',
         'net_weight',
         'dimension',
