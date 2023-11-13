@@ -97,8 +97,9 @@ class UnitModelResource extends Resource
                     ->required()
                     ->columnSpan(2),
                 Forms\Components\TextInput::make('price')
-                    ->numeric()
-                    ->inputMode('decimal')
+                    ->mask(Rawjs::make(<<<'JS'
+                        '999999'
+                    JS))
                     ->required()
                     ->columnSpan(1),
                 static::getUnitModelDetails(),
