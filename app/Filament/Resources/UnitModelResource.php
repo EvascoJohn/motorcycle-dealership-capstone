@@ -89,6 +89,7 @@ class UnitModelResource extends Resource
     {
         return Forms\Components\Group::make([
                 Forms\Components\FileUpload::make('image_file')
+                    ->columnSpan(3)
                     ->directory('unit_model_images')
                     ->acceptedFileTypes(['image/png','image/jpg'])
                     ->disk('public'),
@@ -101,7 +102,6 @@ class UnitModelResource extends Resource
                     ->numeric(true)
                     ->required()
                     ->columnSpan(1),
-                static::getUnitModelDetails(),
         ]);
     }
 
@@ -111,7 +111,8 @@ class UnitModelResource extends Resource
     {
         return $form
             ->schema([
-                UnitModelResource::getUnitDetailsComponent()->columnSpan(2),
+                static::getUnitModelDetails()->columns(3),
+                static::getUnitDetailsComponent()->columnSpan(3),
                 Forms\Components\Placeholder::make('branch')
                 ->label('Current Branch')
                 ->content(fn ():string => Branch::query()
