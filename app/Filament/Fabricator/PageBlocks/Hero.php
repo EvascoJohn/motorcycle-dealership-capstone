@@ -44,7 +44,7 @@ class Hero extends PageBlock
     public static function mutateData(array $data): array
     {
         $data['heading_image'] = pathinfo($data['heading_image'], PATHINFO_FILENAME).".".pathinfo($data['heading_image'], PATHINFO_EXTENSION);;
-        // dd($data['heading_image']);
+        dd($data['heading_image']);
         return $data;
     }
 }
