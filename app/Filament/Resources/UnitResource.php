@@ -47,7 +47,7 @@ class UnitResource extends Resource
                         return '';
                     })
                     ->mask(Rawjs::make(<<<'JS'
-                        $input.startsWith('34') || $input.startsWith('37') ? '999 aaa 99 a 99999'
+                        '999 aaa 99 a 99999'
                     JS))
                     ->columnSpan(1)
                     ->numeric()
