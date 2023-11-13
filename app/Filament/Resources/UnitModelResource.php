@@ -34,7 +34,6 @@ class UnitModelResource extends Resource
                 ->options(Enums\UnitTypes::class)
                 ->required(),
             Forms\Components\Select::make('engine_type')
-                ->maxLength(255)
                 ->options(Enums\EngineTypes::class)
                 ->required()
                 ->columnSpan(1),
