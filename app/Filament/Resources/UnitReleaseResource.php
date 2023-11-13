@@ -45,7 +45,7 @@ class UnitReleaseResource extends Resource
     public static function getApplicationDetails(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-                Forms\Components\PlaceHolder::make("Preffered unit status")
+                Forms\Components\Placeholder::make("Preffered unit status")
                 ->content(fn(?Model $record): string => $record->preffered_unit_status)
         ]);
     }
