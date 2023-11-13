@@ -42,11 +42,22 @@ class UnitResource extends Resource
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
                     ->afterStateHydrated(function (Forms\Components\TextInput $component, string|null $state) {
-                        if($state == null){
+                        if ($state == null) {
                             $component->state("");    
                         }
-                        dd($state);
-                        $component->state(Str::upper($state));
+                    
+                        $capitalizedState = '';
+                        $length = strlen($state);
+                    
+                        for ($i = 0; $i < $length; $i++) {
+                            if (ctype_alpha($state[$i])) {
+                                $capitalizedState .= strtoupper($state[$i]);
+                            } else {
+                                $capitalizedState .= $state[$i];
+                            }
+                        }
+                    
+                        $component->state($capitalizedState);
                     })
                     ->mask(Rawjs::make(<<<'JS'
                         '999aaa99a99999'
