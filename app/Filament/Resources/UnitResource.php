@@ -36,12 +36,14 @@ class UnitResource extends Resource
                     ->columnSpan(1)
                     ->options(Enums\UnitStatus::class)
                     ->required(),
-            Forms\Components\TextInput::make('chasis_number')
-                    ->numeric()
+            Forms\Components\TextInput::make('frame_number')
+                    ->mask(Rawjs::make(<<<'JS'
+                        'aaaaaaaa9aa999999'
+                    JS))
                     ->columnSpan(1)
+                    ->numeric()
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
-                    ->formatStateUsing(fn (string|null $state ): string => dd(Str::upper($state)))
                     ->mask(Rawjs::make(<<<'JS'
                         '999aaa99a99999'
                     JS))
