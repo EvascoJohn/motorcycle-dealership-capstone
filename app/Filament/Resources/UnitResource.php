@@ -48,7 +48,7 @@ class UnitResource extends Resource
                         return '';
                     })
                     ->mask(Rawjs::make(<<<'JS'
-                        '999 aaa 99 a 99999'
+                        '999aaa99a99999'
                     JS))
                     ->columnSpan(1)
                     ->numeric()
