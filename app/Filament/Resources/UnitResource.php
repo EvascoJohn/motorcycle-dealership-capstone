@@ -40,7 +40,7 @@ class UnitResource extends Resource
                     ->columnSpan(1)
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
-                    ->formatStateUsing(function (string $state): string|null{
+                    ->formatStateUsing(function (string|null $state): string|null{
                         if($state != null || $state != ' '){
                             return ucwords($state);
                         }
