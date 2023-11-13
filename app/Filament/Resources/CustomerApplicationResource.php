@@ -21,6 +21,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Support\Enums\Alignment;
 use Filament\Infolists\Components\TextEntry;
+use Illuminate\Support\HtmlString;
+use Filament\Forms\Components\Wizard;
+use Illuminate\Support\Facades\Blade;
 
 use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
 
