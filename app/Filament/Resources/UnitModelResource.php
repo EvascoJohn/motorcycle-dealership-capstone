@@ -97,7 +97,6 @@ class UnitModelResource extends Resource
                     ->required()
                     ->columnSpan(2),
                 Forms\Components\TextInput::make('price')
-                    ->inputMode('decimal')
                     ->required()
                     ->columnSpan(1),
                 static::getUnitModelDetails(),
@@ -128,7 +127,6 @@ class UnitModelResource extends Resource
                 Tables\Columns\TextColumn::make('model_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
-                    ->money('php')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('body_type')
                     ->searchable(),
