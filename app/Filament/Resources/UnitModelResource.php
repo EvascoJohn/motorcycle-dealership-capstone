@@ -99,7 +99,9 @@ class UnitModelResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->mask(Rawjs::make(<<<'JS'
                         function(input, e, value, maxLength) {
-                            $money(input, '.', ',', 4);
+                            if (typeof value !== 'string') {
+                                $money(input, '.', ',', 4);
+                            }
                         }
                     JS))
                     ->required()
