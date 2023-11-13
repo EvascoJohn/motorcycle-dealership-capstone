@@ -82,10 +82,11 @@ class UnitModelResource extends Resource
                 ->columnSpan(2)
                 ->required()
                 ->toolbarButtons([]),
-        ]);
+        ])
+        ->columns(3);
     }
 
-    public static function getUnitDetailsComponent(): Forms\Components\Component
+    public static function getImportantDetailsComponent(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
                 Forms\Components\FileUpload::make('image_file')
@@ -111,8 +112,8 @@ class UnitModelResource extends Resource
     {
         return $form
             ->schema([
-                static::getUnitModelDetails()->columns(3),
-                static::getUnitDetailsComponent()->columnSpan(3),
+                static::getImportantDetailsComponent()->columnSpan(3),
+                static::getUnitModelDetails()->columnSpan(3),
                 Forms\Components\Placeholder::make('branch')
                 ->label('Current Branch')
                 ->content(fn ():string => Branch::query()
