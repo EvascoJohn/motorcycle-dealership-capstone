@@ -33,7 +33,7 @@ class UnitModelResource extends Resource
                 ->columnSpan(1)
                 ->options(Enums\UnitTypes::class)
                 ->required(),
-            Forms\Components\TextInput::make('engine_type')
+            Forms\Components\Select::make('engine_type')
                 ->maxLength(255)
                 ->options(Enums\EngineTypes::class)
                 ->required()
@@ -52,11 +52,11 @@ class UnitModelResource extends Resource
                 ->suffix('L')
                 ->required()
                 ->columnSpan(1),
-            Forms\Components\TextInput::make('starting_system')
+            Forms\Components\Select::make('starting_system')
                 ->options(Enums\StartingSystemTypes::class)
                 ->required()
                 ->columnSpan(1),
-            Forms\Components\TextInput::make('transmission')
+            Forms\Components\Select::make('transmission')
                 ->options(Enums\TransmissionTypes::class)
                 ->required()
                 ->columnSpan(1),
