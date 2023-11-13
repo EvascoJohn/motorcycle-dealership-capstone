@@ -789,7 +789,15 @@ class CustomerApplicationResource extends Resource
                                         CustomerApplicationResource::getStatementOfMonthlyIncome()
                                 ]),
                 ])
-                ->columnSpan(6),   
+                ->columnSpan(6)
+                ->submitAction(new HtmlString(Blade::render(<<<BLADE
+                <x-filament::button
+                    type="submit"
+                    size="sm"
+                >
+                    Submit
+                </x-filament::button>
+            BLADE)),
         ]);
     }
 
