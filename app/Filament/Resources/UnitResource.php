@@ -39,6 +39,7 @@ class UnitResource extends Resource
                     ->columnSpan(1)
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
+                    ->rules(['required', 'max:2'])
                     ->columnSpan(1)
                     ->numeric()
                     ->required(),
