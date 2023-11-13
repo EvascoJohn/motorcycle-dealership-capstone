@@ -15,6 +15,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Support\RawJs;
+use Illuminate\Support\Str;
 
 class UnitResource extends Resource
 {
@@ -42,7 +43,7 @@ class UnitResource extends Resource
             Forms\Components\TextInput::make('engine_number')
                     ->formatStateUsing(function (string|null $state): string|null{
                         if($state != null || $state != ' '){
-                            return ucwords($state);
+                            return Str::upper($state);
                         }
                         return '';
                     })
