@@ -98,7 +98,7 @@ class UnitModelResource extends Resource
                     ->columnSpan(2),
                 Forms\Components\TextInput::make('price')
                     ->mask(Rawjs::make(<<<'JS'
-                        $money($input, '.', ',', 4)
+                        $money($input, '.', ',', 2)
                     JS))
                     ->required()
                     ->columnSpan(1),
