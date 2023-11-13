@@ -97,6 +97,7 @@ class UnitModelResource extends Resource
                     ->required()
                     ->columnSpan(2),
                 Forms\Components\TextInput::make('price')
+                    ->inputMode('decimal')
                     ->numeric(true)
                     ->required()
                     ->columnSpan(1),
