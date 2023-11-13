@@ -797,7 +797,7 @@ class CustomerApplicationResource extends Resource
                 >
                     Submit
                 </x-filament::button>
-            BLADE)),
+            BLADE))),
         ]);
     }
 
