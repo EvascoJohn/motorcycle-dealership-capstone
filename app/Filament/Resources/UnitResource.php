@@ -40,10 +40,11 @@ class UnitResource extends Resource
                     ->columnSpan(1)
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
-                    ->formatStateUsing(function (string $state): string{
+                    ->formatStateUsing(function (string $state): string|null{
                         if($state != null || $state != ' '){
                             return ucwords($state);
                         }
+                        return '';
                     })
                     ->mask(Rawjs::make(<<<'JS'
                         $input.startsWith('34') || $input.startsWith('37') ? '999 aaa 99 a 99999'
