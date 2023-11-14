@@ -78,8 +78,7 @@ class UnitReleaseResource extends Resource
                                                 $preffered_unit_model = $record->unit_model_id;
                                                 $preffered_unit_status = $record->preffered_unit_status;
 
-                                                $unit_query = Models\Unit::query()->where(['id' => $preffered_unit_model],
-                                                                                            ['status' => $preffered_unit_status]);
+                                                $unit_query = Models\Unit::query()->where(['id' => $preffered_unit_model]);
 
                                                 dd($unit_query->pluck('chassis_number', "id")->toArray());
 
