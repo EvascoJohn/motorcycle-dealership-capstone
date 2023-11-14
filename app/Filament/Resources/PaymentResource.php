@@ -42,15 +42,59 @@ class PaymentResource extends Resource
     public static function getPaymentDetails(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-
+                Forms\Components\TextInput::make('due_date')
+                        ->readOnly()
+                        ->hidden(function(string $operation){
+                            if($operation == "edit"){
+                                return true;
+                            }
+                        }),
+                Forms\Components\TextInput::make('payment_amount')
+                        ->live()
+                        ->required()
+                        ->readOnly(function (Forms\Get $get):bool{
+                            $dp = CustomerApplication::query()
+                                ->where('id', $get('customer_application_id'))
+                                ->first();
+                            if($dp != null){
+                                return true;
+                            }
+                            return false;
+                        }),
+                Forms\Components\TextInput::make('penalty'),
+                Forms\Components\Select::make('payment_status')
+                        ->live()
+                        ->options([
+                            'advance' => 'Advance',
+                            'current' => 'Current',
+                            'overdue' => 'Overdue',
+                            'diligent' => 'Diligent',
+                        ])
+                        ->readOnly(function (Forms\Get $get):bool{
+                            $dp = CustomerApplication::query()
+                                ->where('id', $get('customer_application_id'))
+                                ->first();
+                            if($dp != null){
+                                return true;
+                            }
+                            return false;
+                        })
+                        ->required(),
+                
+                Forms\Components\Select::make('payment_type')->label('Payment Type:')
+                        ->options([
+                            "field" => "Field",
+                            "office" => "Office",
+                            "bank" => "Bank",
+                        ])
+                        ->columnSpan(1)
+                        ->required(true),
         ]);
     }
 
     public static function getPaymentInput(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-            Forms\Components\TextInput::make('payment_amount')
-                    ->label('Amount'),
         ]);
     }
 
@@ -120,53 +164,12 @@ class PaymentResource extends Resource
         ]);
     }
 
-
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 PaymentResource::getApplicationDetails(),
-                Forms\Components\TextInput::make('due_date')
-                        ->readOnly()
-                        ->hidden(function(string $operation){
-                            if($operation == "edit"){
-                                return true;
-                            }
-
-                        }),
-                Forms\Components\TextInput::make('payment_amount')
-                        ->live()
-                        ->required()
-                        ->readOnly(function (Forms\Get $get):bool{
-                            $dp = CustomerApplication::query()
-                                ->where('id', $get('customer_application_id'))
-                                ->first();
-                            if($dp != null){
-                                return true;
-                            }
-                            return false;
-                        }),
-                Forms\Components\TextInput::make('penalty'),
-                Forms\Components\Select::make('payment_status')
-                        ->live()
-                        ->options([
-                            'advance' => 'Advance',
-                            'current' => 'Current',
-                            'overdue' => 'Overdue',
-                            'diligent' => 'Diligent',
-                        ])
-                        ->required(),
-                
-                Forms\Components\Select::make('payment_type')->label('Payment Type:')
-                        ->options([
-                            "field" => "Field",
-                            "office" => "Office",
-                            "bank" => "Bank",
-                        ])
-                        ->columnSpan(1)
-                        ->required(true),
-
+                PaymentResource::getPaymentDetails(),
             ]);
     }
 
