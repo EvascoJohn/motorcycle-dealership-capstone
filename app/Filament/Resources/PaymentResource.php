@@ -34,7 +34,7 @@ class PaymentResource extends Resource
     public static function getApplicationInformation(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-            Forms\Components\Section::make('Customer Account')
+            Forms\Components\Section::make('customer_application_group')
                     ->schema([
                         Forms\Components\TextInput::make('application_firstname')
                                 ->columnSpan(3)
@@ -134,7 +134,8 @@ class PaymentResource extends Resource
                         $set('due_date', "");
                         $set('payment_amount', "");
                         $set('application_firstname',  "");
-                        $set('application_lastname',  "");
+                        $set('customer_application_group',  "");
+                        $set('application_unit',  "");
                         $set('application_unit',  "");
                         $set('application_unit_price',  "");
                         if($application != null){
