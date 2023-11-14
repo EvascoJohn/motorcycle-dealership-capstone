@@ -70,7 +70,7 @@ Route::prefix('/products')->group(function () {
     });
 });
 
-Route::redirect('/customer/login', '/login')->name('login');
+Route::redirect('/login', '/customer/login')->name('login');
 
 // Route::post('/login', [CustomerLogin::class, 'authenticate']);
 
