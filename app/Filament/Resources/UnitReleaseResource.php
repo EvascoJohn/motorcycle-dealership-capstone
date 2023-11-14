@@ -87,23 +87,18 @@ class UnitReleaseResource extends Resource
                             Forms\Components\Select::make('units_id')
                                     ->live()
                                     ->options(
-                                            function (Forms\Get $get): array {
+                                            function (Forms\Get $get): array|null {
                                                 $units_query = Models\Unit::where('unit_model_id', $get('unit_model_id'))
                                                 ->where('status', $get('preffered_unit_status'));
-                                            
-                                            if ($get('preffered_unit_status') == 'repo') {
+
+                                                if ($get('preffered_unit_status') == 'repo') {
                                                 $units_query->where('customer_application_id', '!=', null);
-                                            } else if ($get('preffered_unit_status') == 'brand_new') {
+                                                } else if ($get('preffered_unit_status') == 'brand_new') {
                                                 $units_query->where('customer_application_id', null);
-                                            }
-                                            
-                                            $result = $units_query->pluck('chassis_number', 'id')->toArray();
-                                            $result = array_filter($result, function ($value) {
-                                                return $value !== null;
-                                            });
-                                            
-                                            // dd($result);
-                                            return $result;
+                                                }
+
+                                                // dd($units_query->pluck('chassis_number', 'id')->toArray());
+                                                return $units_query->pluck('chassis_number', 'id')->toArray() ?? [];
                                             }
                                     )
                                     ->afterStateUpdated(
