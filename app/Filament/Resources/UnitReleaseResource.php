@@ -79,11 +79,9 @@ class UnitReleaseResource extends Resource
                                                 $preffered_unit_status = $record->preffered_unit_status;
 
                                                 $unit_query = Models\Unit::query()->where('id', $preffered_unit_model);
+                                                $unit_query->where('status', $get('preffered_unit_status'));
 
-                                                dd($unit_query->first());
-                                                
-                                                $units_query = Models\Unit::where('unit_model_id', $get('unit_model_id'))
-                                                ->where('status', $get('preffered_unit_status'));
+                                                dd($unit_query)
 
                                                 if ($get('preffered_unit_status') == 'repo') {
                                                         $units_query->where('customer_application_id', '!=', null);
