@@ -63,7 +63,7 @@ class UnitReleaseResource extends Resource
                                         return [];
                                 }
 
-                                dd("out");
+                                dd($get('search_by'));
 
                                 $units_query = Models\Unit::query()->where(['unit_model_id' => $preffered_unit_model]);
 
