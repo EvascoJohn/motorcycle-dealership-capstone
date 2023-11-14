@@ -80,7 +80,7 @@ class UnitReleaseResource extends Resource
 
                                                 $unit_query = Models\Unit::query()->where(['unit_model_id' => $preffered_unit_model]);
 
-                                                dd($unit_query->pluck('chassis_number', "id")->toArray());
+                                                dd($unit_query->pluck("id", 'chassis_number')->toArray());
 
                                                 if ($get('preffered_unit_status') == 'repo') {
                                                         $units_query->where('customer_application_id', '!=', null);
