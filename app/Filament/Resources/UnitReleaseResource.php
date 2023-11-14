@@ -47,8 +47,8 @@ class UnitReleaseResource extends Resource
         return Forms\Components\Group::make([
             Forms\Components\Select::make('search_by')
             ->options([
-                'engine_no' => "Engine No.",
-                'frame_no' => "Frame No.",
+                'engine_number' => "Engine No.",
+                'frame_number' => "Frame No.",
             ])
             ->live(),
             Forms\Components\Select::make('units_id')
@@ -57,17 +57,18 @@ class UnitReleaseResource extends Resource
                             function (Forms\Get $get, ?Model $record): array {
                                 $preffered_unit_model = $record->unit_model_id;
                                 $preffered_unit_status = $record->preffered_unit_status;
+                                $search_by = $get('search_by');
 
-                                if($get('search_by') == null)
-                                {
-                                        return [];
-                                }
+                                //check if there is no selected value in search by.
+                                if($search_by == null){return [];}
 
-                                dd($get('search_by'));
+                                $units_query = Models\Unit::query()
+                                        ->where([
+                                                ['unit_model_id' => $preffered_unit_model],
+                                                ['status' => $preffered_unit_status]
+                                        ]);
 
-                                $units_query = Models\Unit::query()->where(['unit_model_id' => $preffered_unit_model]);
-
-                                //dd($units_query->pluck("id", 'engine_number')->toArray());
+                                dd($units_query->pluck("id", $search_by)->toArray());
 
                                 if ($get('preffered_unit_status') == 'repo') {
                                         $units_query->where('customer_application_id', '!=', null);
