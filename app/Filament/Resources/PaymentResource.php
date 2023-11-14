@@ -84,7 +84,7 @@ class PaymentResource extends Resource
                             }
                         }
                         $due_date = $application->due_date;
-                        $today = Carbon::createFromFormat(config('app.date_format'), Carbon::today());
+                        $today = Carbon::today()->format(config('app.date_format'));
                         dd($today);
                         $today = Carbon::parse(Carbon::today()->format(config('app.date_format')));
                         $amort_fin = $application->unit_monthly_amort;
