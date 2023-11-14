@@ -37,18 +37,23 @@ class PaymentResource extends Resource
             Forms\Components\Section::make('Customer Account')
                     ->schema([
                         Forms\Components\TextInput::make('application_firstname')
+                                ->columnSpan(2)
                                 ->disabled()
                                 ->label('First name'),
                         Forms\Components\TextInput::make('application_lastname')
+                                ->columnSpan(2)
                                 ->disabled()
                                 ->label('Last name'),
                         Forms\Components\TextInput::make('application_unit')
+                            ->columnSpan(2)
                                 ->disabled()
                                 ->label('Unit'),
                         Forms\Components\TextInput::make('application_unit_price')
+                                ->columnSpan(6)
                                 ->disabled()
                                 ->label('Price'),
                     ])
+                    ->columns(6)
         ]);
     }
 
@@ -211,7 +216,6 @@ class PaymentResource extends Resource
                     Tables\Columns\TextColumn::make('payment_amount')
                             ->label('Payment Amount')
                             ->money('php'),
-
                     Tables\Columns\TextColumn::make('created_at')
                             ->label('Date Paid')
                             ->dateTime('d-M-Y'),
