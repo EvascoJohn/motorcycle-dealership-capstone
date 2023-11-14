@@ -60,7 +60,7 @@ class UnitReleaseResource extends Resource
 
                                 if($get('search_by') == null)
                                 {
-                                    dd("search");
+                                        return [];
                                 }
 
                                 dd("out");
