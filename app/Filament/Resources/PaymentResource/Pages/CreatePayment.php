@@ -28,7 +28,7 @@ class CreatePayment extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
 
-        dd($this);
+        dd($data);
         return $data;
     }
 
