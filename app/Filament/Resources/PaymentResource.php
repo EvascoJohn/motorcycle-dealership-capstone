@@ -136,7 +136,10 @@ class PaymentResource extends Resource
                             $dp = CustomerApplication::query()
                                 ->where('id', $get('customer_application_id'))
                                 ->first();
-                            dd($dp);
+                            if($dp != null){
+                                return true;
+                            }
+                            return false;
                         }),
                 Forms\Components\TextInput::make('penalty'),
                 Forms\Components\Select::make('payment_status')
