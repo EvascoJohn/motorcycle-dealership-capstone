@@ -70,7 +70,7 @@ class PaymentResource extends Resource
                 ->required()
                 ->live()
                 ->afterStateUpdated(
-                    function($state, Forms\Set $set){
+                    function($state, Forms\Set $set, ?Model $record){
                         $application = CustomerApplication::query()
                                 ->where("id", $state)
                                 ->first();
@@ -83,6 +83,8 @@ class PaymentResource extends Resource
                                 // dd("Down Payment");
                             }else if($application->application_status == ApplicationStatus::ACTIVE_STATUS){
                                 // dd("Amort. Payment");
+                                $record->payment_amount = $application->unit_monthly_amort;
+                                dd($record->payment_amount);
                             }
                             $due_date = $application->due_date;
                             $today = Carbon::today();
