@@ -83,7 +83,7 @@ class PaymentResource extends Resource
                                 // dd("Down Payment");
                             }else if($application->application_status == ApplicationStatus::ACTIVE_STATUS->value){
                                 // dd("Amort. Payment");
-                                $record->payment_amount = $application->unit_monthly_amort;
+                                $state->payment_amount = $application->unit_monthly_amort;
                                 dd($record->payment_amount);
                             }
                             $due_date = $application->due_date;
