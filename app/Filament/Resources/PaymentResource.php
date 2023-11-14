@@ -135,8 +135,7 @@ class PaymentResource extends Resource
                         ->disabled(function (Forms\Get $get):bool{
                             $dp = CustomerApplication::query()
                                 ->where('id', $get('customer_application_id'))
-                                ->first()
-                                ->unit_ttl_dp;
+                                ->first();
                             dd($dp);
                         }),
                 Forms\Components\TextInput::make('penalty'),
