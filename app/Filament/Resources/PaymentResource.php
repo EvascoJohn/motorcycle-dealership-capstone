@@ -45,7 +45,7 @@ class PaymentResource extends Resource
                                 ->disabled()
                                 ->label('Last name'),
                         Forms\Components\TextInput::make('application_unit')
-                            ->columnSpan(2)
+                                ->columnSpan(6)
                                 ->disabled()
                                 ->label('Unit'),
                         Forms\Components\TextInput::make('application_unit_price')
