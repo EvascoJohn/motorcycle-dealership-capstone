@@ -77,11 +77,11 @@ class PaymentResource extends Resource
                         $set('due_date', "");
                         $set('payment_amount', "");
                         if($application != null){
-                            if($application->application_status == ApplicationStatus::APPROVED_STATUS 
+                            if($application->application_status == ApplicationStatus::APPROVED_STATUS ->value
                                     && $application->release_status == ReleaseStatus::UN_RELEASED->value)
                             {
                                 // dd("Down Payment");
-                            }else if($application->application_status == ApplicationStatus::ACTIVE_STATUS){
+                            }else if($application->application_status == ApplicationStatus::ACTIVE_STATUS->value){
                                 // dd("Amort. Payment");
                                 $record->payment_amount = $application->unit_monthly_amort;
                                 dd($record->payment_amount);
