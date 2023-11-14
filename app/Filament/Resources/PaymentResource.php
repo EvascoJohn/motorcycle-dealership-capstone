@@ -180,10 +180,14 @@ class PaymentResource extends Resource
     {
         return $form
             ->schema([
-                PaymentResource::getApplicationDetails()
-                        ->columnSpan(3),
-                PaymentResource::getApplicationInformation()
-                        ->columnSpan(3),
+                Forms\Components\Group::make([
+                    PaymentResource::getApplicationDetails()
+                            ->columnSpan(3),
+                    PaymentResource::getApplicationInformation()
+                            ->columnSpan(3),  
+                ])
+                ->columns(6)
+                ->columnSpan(3),
                 PaymentResource::getPaymentDetails()
                         ->columnSpan(3),
             ])
