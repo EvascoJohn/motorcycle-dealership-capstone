@@ -69,7 +69,7 @@ class UnitReleaseResource extends Resource
                                 ]);
 
 
-                                dd($units_query->pluck('id', 'engine_number'));
+                                dd($units_query->pluck('id', 'uni_model_id'));
 
                                 if ($get('preffered_unit_status') == 'repo') {
                                         $units_query->where('customer_application_id', '!=', null);
