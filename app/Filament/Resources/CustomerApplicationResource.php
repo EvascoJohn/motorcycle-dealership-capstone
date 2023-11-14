@@ -83,7 +83,7 @@ class CustomerApplicationResource extends Resource
 
     public static function getCoOwnerInformation(): Forms\Components\Component
     {
-        return Forms\Components\Section::make("Co-owner")
+        return Forms\Components\Section::make("Co-Maker")
                 ->schema([
                         Forms\Components\Group::make([
                                 Forms\Components\Group::make([
@@ -915,7 +915,7 @@ class CustomerApplicationResource extends Resource
                                                             ->label("Provided ID(s)"),
                                         ]),
                                     ]),
-                                InfoLists\Components\Tabs\Tab::make('Co-maker Information')
+                                InfoLists\Components\Tabs\Tab::make("Co-owner's Information")
                                     ->schema([
                                         // ...
                                     ]),
