@@ -175,6 +175,7 @@ class UnitReleaseResource extends Resource
                     UnitReleaseResource::getReleaseDetailsComponent()
                             ->columns(3)
                             ->columnSpan(2),
+                            UnitReleaseResource::getAvailabilitiesComponent(),
                     Forms\Components\SpatieMediaLibraryFileUpload::make('media')
                             ->label('Stencil')
                             ->columnSpan(2),
