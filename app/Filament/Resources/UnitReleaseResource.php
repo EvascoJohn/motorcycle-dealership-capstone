@@ -68,7 +68,7 @@ class UnitReleaseResource extends Resource
                                                 ['status' => $preffered_unit_status]
                                         ]);
 
-                                dd($units_query->pluck("id", $search_by)->toArray());
+                                dd($units_query->pluck("id", 'engine_number')->toArray());
 
                                 if ($get('preffered_unit_status') == 'repo') {
                                         $units_query->where('customer_application_id', '!=', null);
