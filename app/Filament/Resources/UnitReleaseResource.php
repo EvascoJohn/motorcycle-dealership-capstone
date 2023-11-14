@@ -66,7 +66,7 @@ class UnitReleaseResource extends Resource
                                         ->where([
                                                 'unit_model_id' => $preffered_unit_model,
                                                 'status' => $preffered_unit_status
-                                ])->get;
+                                ]);
 
 
                                 dd($units_query->pluck('id', 'unit_model_id'));
