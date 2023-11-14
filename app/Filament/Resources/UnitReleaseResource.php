@@ -66,24 +66,10 @@ class UnitReleaseResource extends Resource
                                     ->searchable(['model_name', 'id'])
                                     ->preload()
                                     ->live(),
-
-                            Forms\Components\Select::make('unit_status')
-                                    ->hint("Ex. Mio soul i")
-                                    ->label('Unit Model')
-                                    ->disabled()
-                                    ->relationship(
-                                            'unitModel',
-                                            'model_name'
-                                    )
-                                    ->searchable(['model_name', 'id'])
-                                    ->preload()
-                                    ->live(),
-                                    
                             Forms\Components\TextInput::make('unit_srp')
                                     ->disabled(),
-                            Forms\Components\TextInput::make('unit_status')
-                                    ->live(500)
-                                    ->disabled(),
+                            Forms\Components\Placeholder::make('unit_status')
+                                    ->content(fn(?Model $record): string => $record->unit_status),
                             Forms\Components\Select::make('units_id')
                                     ->live()
                                     ->options(
