@@ -97,7 +97,7 @@ class UnitReleaseResource extends Resource
                                                         $units_query->where('customer_application_id', null);
                                                 }
 
-                                                dd($units_query->pluck('chassis_number', 'id')->toArray()[0] == null);
+                                                dd($units_query->pluck('chassis_number', 'id')->toArray()[1] == null);
                                                 return $units_query->pluck('chassis_number', 'id')->toArray() ?? [];
                                             }
                                     )
