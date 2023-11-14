@@ -62,7 +62,7 @@ class PaymentResource extends Resource
                         name: 'customerApplication',
                         titleAttribute: 'applicant_lastname',
                         modifyQueryUsing: fn (Builder $query) => $query->where("application_status", "Active")
-                                                                                ->orwhere("application_status", "Approved"),
+                                                                    ->orwhere("application_status", "Approved"),
                 )
                 ->label('For Applicant:')
                 ->preload()
@@ -111,6 +111,8 @@ class PaymentResource extends Resource
                                 $set('payment_status', 'delinquent');
                             }
                         }
+                        $set('due_date', "");
+                        $set('payment_amount', "");
                     }
                 ),
         ]);
