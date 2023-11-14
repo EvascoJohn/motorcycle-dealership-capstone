@@ -61,7 +61,6 @@ class PaymentResource extends Resource
                             }
                             return false;
                         }),
-                Forms\Components\TextInput::make('penalty'),
                 Forms\Components\Select::make('payment_status')
                         ->live()
                         ->options([
@@ -71,7 +70,7 @@ class PaymentResource extends Resource
                             'diligent' => 'Diligent',
                         ])
                         ->required(),
-                
+                Forms\Components\TextInput::make('penalty'),
                 Forms\Components\Select::make('payment_type')->label('Payment Type:')
                         ->options([
                             "field" => "Field",
