@@ -68,8 +68,8 @@ class UnitReleaseResource extends Resource
                                     ->live(),
                             Forms\Components\TextInput::make('unit_srp')
                                     ->disabled(),
-                            Forms\Components\Placeholder::make('unit_status')
-                                    ->content(fn(?Model $record): string => $record->unit_status),
+                            Forms\Components\Placeholder::make('preffered_unit_status')
+                                    ->content(fn(?Model $record): string => $record->preffered_unit_status),
                             Forms\Components\Select::make('units_id')
                                     ->live()
                                     ->options(
