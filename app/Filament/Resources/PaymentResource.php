@@ -128,6 +128,10 @@ class PaymentResource extends Resource
                                 ->first();
                         $set('due_date', "");
                         $set('payment_amount', "");
+                        $set('application_firstname',  "");
+                        $set('application_lastname',  "");
+                        $set('application_unit',  "");
+                        $set('application_unit_price',  "");
                         if($application != null){
                             if($application->application_status == ApplicationStatus::APPROVED_STATUS ->value
                                     && $application->release_status == ReleaseStatus::UN_RELEASED->value)
