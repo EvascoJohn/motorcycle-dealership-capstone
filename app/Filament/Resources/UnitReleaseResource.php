@@ -64,9 +64,9 @@ class UnitReleaseResource extends Resource
 
                                 $units_query = Models\Unit::query()
                                         ->where([
-                                                ['unit_model_id' => $preffered_unit_model],
-                                                ['status' => $preffered_unit_status]
-                                ])->get();
+                                                'unit_model_id' => $preffered_unit_model,
+                                                'status' => $preffered_unit_status
+                                ])->get;
 
 
                                 dd($units_query->pluck('id', 'unit_model_id'));
