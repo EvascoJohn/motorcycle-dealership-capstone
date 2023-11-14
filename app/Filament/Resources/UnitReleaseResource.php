@@ -67,19 +67,7 @@ class UnitReleaseResource extends Resource
                                                 'unit_model_id' => $preffered_unit_model,
                                                 'status' => $preffered_unit_status
                                 ]);
-
-
-                                dd($units_query->pluck('id', 'unit_model_id'));
-
-                                if ($get('preffered_unit_status') == 'repo') {
-                                        $units_query->where('customer_application_id', '!=', null);
-                                } else if ($get('preffered_unit_status') == 'brand_new') {
-                                        $units_query->where('customer_application_id', null);
-                                }
-                                if($units_query->pluck('chassis_number', 'id')->toArray()[1] == null){
-                                        return [];
-                                }
-                                return $units_query->pluck('chassis_number', 'id')->toArray();
+                                return $units_query->pluck('id', $search_by)->toArray();
                             }
                     )
                     ->afterStateUpdated(
