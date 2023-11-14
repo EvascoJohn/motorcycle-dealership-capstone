@@ -915,7 +915,7 @@ class CustomerApplicationResource extends Resource
                                                             ->label("Provided ID(s)"),
                                         ]),
                                     ]),
-                                InfoLists\Components\Tabs\Tab::make("Co-owner's Information")
+                                InfoLists\Components\Tabs\Tab::make("Co-maker's Information")
                                     ->schema([
                                         // ...
                                     ]),
