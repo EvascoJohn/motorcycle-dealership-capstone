@@ -80,7 +80,7 @@ class UnitReleaseResource extends Resource
 
                                                 $unit_query = Models\Unit::where('unit_model_id', $preffered_unit_model);
 
-                                                dd($unit_query);
+                                                dd($unit_query->first());
                                                 
                                                 $units_query = Models\Unit::where('unit_model_id', $get('unit_model_id'))
                                                 ->where('status', $get('preffered_unit_status'));
