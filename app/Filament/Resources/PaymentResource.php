@@ -124,6 +124,8 @@ class PaymentResource extends Resource
             ->schema([
                 PaymentResource::getApplicationDetails(),
                 Forms\Components\Placeholder::make('due_date')
+                    ->content(fn(?Model $record): string => CustomerApplication::query()
+                            ->where('id', $record->customer_application_id)->first()->due_date ?? "")
                     ->live(),
 
                 Forms\Components\TextInput::make('payment_amount'),
