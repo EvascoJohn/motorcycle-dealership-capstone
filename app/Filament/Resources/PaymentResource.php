@@ -31,11 +31,24 @@ class PaymentResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
 
-    public static function getDownpaymentInputComponent(): Forms\Components\Component
+    public static function getApplicationInformation(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-            Forms\Components\TextInput::make('payment_amount')
-                    ->label('Down Payment'),
+            Forms\Components\Section::make('Customer Account')
+                    ->schema([
+                        Forms\Components\TextInput::make('application_firstname')
+                                ->disabled()
+                                ->label('First name'),
+                        Forms\Components\TextInput::make('application_lastname')
+                                ->disabled()
+                                ->label('Last name'),
+                        Forms\Components\TextInput::make('application_unit')
+                                ->disabled()
+                                ->label('Unit'),
+                        Forms\Components\TextInput::make('application_unit_price')
+                                ->disabled()
+                                ->label('Price'),
+                    ])
         ]);
     }
 
@@ -131,6 +144,10 @@ class PaymentResource extends Resource
                             $amort_fin = $application->unit_monthly_amort;
                             $set('due_date', $due_date);
                             $set('payment_amount', $amort_fin);
+                            $set('application_firstname', $application->applicant_firstname);
+                            $set('application_lastname', $application->applicant_lastname);
+                            $set('application_unit', $application->unitModel->model_name);
+                            $set('application_unit_price', $application->unitModel->price);
                             
                             $delinquent = $today->copy()->addDays(30);
                             
