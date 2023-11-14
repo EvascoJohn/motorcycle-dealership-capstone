@@ -87,7 +87,7 @@ class UnitReleaseResource extends Resource
                             Forms\Components\Select::make('units_id')
                                     ->live()
                                     ->options(
-                                            function (Forms\Get $get): array|null {
+                                            function (Forms\Get $get): array {
                                                 $units_query = Models\Unit::where('unit_model_id', $get('unit_model_id'))
                                                 ->where('status', $get('preffered_unit_status'));
 
@@ -97,7 +97,7 @@ class UnitReleaseResource extends Resource
                                                 $units_query->where('customer_application_id', null);
                                                 }
 
-                                                // dd($units_query->pluck('chassis_number', 'id')->toArray());
+                                                dd($units_query->pluck('chassis_number', 'id')->toArray());
                                                 return $units_query->pluck('chassis_number', 'id')->toArray() ?? [];
                                             }
                                     )
