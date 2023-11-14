@@ -186,7 +186,7 @@ class PaymentResource extends Resource
                     PaymentResource::getApplicationInformation()
                             ->columnSpan(3),  
                 ])
-                ->columns(6)
+                ->columns(3)
                 ->columnSpan(3),
                 PaymentResource::getPaymentDetails()
                         ->columnSpan(3),
