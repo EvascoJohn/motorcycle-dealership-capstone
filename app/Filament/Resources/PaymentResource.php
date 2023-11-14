@@ -84,21 +84,20 @@ class PaymentResource extends Resource
                             }
                         }
                         $due_date = $application->due_date;
-                        $today = Carbon::today()->format(config('app.date_format'));
-                        dd($today);
-                        $today = Carbon::parse(Carbon::today()->format(config('app.date_format')));
+                        $today = Carbon::today();
+                        
                         $amort_fin = $application->unit_monthly_amort;
                         $set('due_date', $due_date);
                         $set('payment_amount', $amort_fin);
-
-                        $delinquent = Carbon::parse(Carbon::createFromFormat(config('app.date_format'), $due_date)->addDays(30));
-
-                        $parsed_date = Carbon::parse(Carbon::createFromFormat(config('app.date_format'), $due_date));
-
-                        $is_advance = $today->lessThan($parsed_date);
-                        $is_current = $today->equalTo($parsed_date);
-                        $is_overdue = $today->greaterThan($parsed_date) && $today->lessThan($delinquent);
-                        $is_delinquent = $today->greaterThan($delinquent);
+                        
+                        $delinquent = $today->copy()->addDays(30);
+                        
+                        $parsed_date = Carbon::createFromFormat(config('app.date_format'), $due_date);
+                        
+                        $is_advance = $today->lt($parsed_date);
+                        $is_current = $today->eq($parsed_date);
+                        $is_overdue = $today->gt($parsed_date) && $today->lt($delinquent);
+                        $is_delinquent = $today->gt($delinquent);
 
                         if($today->lessThan($parsed_date)){
                             $set('payment_status', 'advance');
