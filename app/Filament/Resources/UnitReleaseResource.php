@@ -86,19 +86,20 @@ class UnitReleaseResource extends Resource
                                     ->disabled(),
                             Forms\Components\Select::make('units_id')
                                     ->live()
-                                //     ->options(
-                                //             function (Forms\Get $get): array {
-                                //                 $units_query = Models\Unit::where('unit_model_id', $get('unit_model_id'))
-                                //                                             ->where('status', $get('preffered_unit_status'));
-                                //                 if($get('preffered_unit_status') == 'repo'){
-                                //                     $units_query->where('customer_application_id', '!=', null);
-                                //                 }else if($get('preffered_unit_status') == 'brand_new')
-                                //                 {
-                                //                     $units_query->where('customer_application_id', null);
-                                //                 }
-                                //                 return $units_query->pluck('chassis_number', 'id')->toArray();
-                                //             }
-                                //     )
+                                    ->options(
+                                            function (Forms\Get $get): array {
+                                                $units_query = Models\Unit::where('unit_model_id', $get('unit_model_id'))
+                                                                            ->where('status', $get('preffered_unit_status'));
+                                                if($get('preffered_unit_status') == 'repo'){
+                                                    $units_query->where('customer_application_id', '!=', null);
+                                                }else if($get('preffered_unit_status') == 'brand_new')
+                                                {
+                                                    $units_query->where('customer_application_id', null);
+                                                }
+                                                dd($units_query);
+                                                return $units_query->pluck('chassis_number', 'id')->toArray();
+                                            }
+                                    )
                                     ->afterStateUpdated(
                                         function(Forms\Get $get, Forms\Set $set)
                                         {
