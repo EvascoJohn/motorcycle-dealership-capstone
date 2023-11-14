@@ -62,6 +62,7 @@ class UnitReleaseResource extends Resource
                                 //check if there is no selected value in search by.
                                 if($search_by == null){return [];}
 
+                                dd($search_by);
                                 $units_query = Models\Unit::query()
                                         ->where([
                                                 ['unit_model_id' => $preffered_unit_model],
