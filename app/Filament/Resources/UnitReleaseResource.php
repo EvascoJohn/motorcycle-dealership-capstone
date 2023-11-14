@@ -67,7 +67,7 @@ class UnitReleaseResource extends Resource
                                                 'unit_model_id' => $preffered_unit_model,
                                                 'status' => $preffered_unit_status
                                 ]);
-                                return $units_query->pluck('id', $search_by)->toArray();
+                                return $units_query->pluck($search_by, 'id')->toArray();
                             }
                     )
                     ->afterStateUpdated(
