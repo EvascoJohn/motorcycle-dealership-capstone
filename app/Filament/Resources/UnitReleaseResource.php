@@ -68,8 +68,9 @@ class UnitReleaseResource extends Resource
                                     ->live(),
                             Forms\Components\TextInput::make('unit_srp')
                                     ->disabled(),
-                            Forms\Components\Placeholder::make('preffered_unit_status')
-                                    ->content(fn(?Model $record): string => $record->preffered_unit_status),
+                            Forms\Components\TextInput::make('unit_status')
+                                    ->live(500)
+                                    ->disabled(),
                             Forms\Components\Select::make('units_id')
                                     ->live()
                                     ->options(
@@ -85,7 +86,7 @@ class UnitReleaseResource extends Resource
                                                 if($units_query->pluck('chassis_number', 'id')->toArray()[1] == null){
                                                         return [];
                                                 }
-                                                return $units_query->pluck('chassis_number', 'id')->toArray() ?? [];
+                                                return $units_query->pluck('chassis_number', 'id')->toArray();
                                             }
                                     )
                                     ->afterStateUpdated(
