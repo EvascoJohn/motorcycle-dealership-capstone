@@ -43,6 +43,7 @@ class PaymentResource extends Resource
     {
         return Forms\Components\Group::make([
                 Forms\Components\TextInput::make('due_date')
+                        ->columnSpan(6)
                         ->readOnly()
                         ->hidden(function(string $operation){
                             if($operation == "edit"){
@@ -80,7 +81,7 @@ class PaymentResource extends Resource
                             "office" => "Office",
                             "bank" => "Bank",
                         ])
-                        ->columnSpan(1)
+                        ->columnSpan(6)
                         ->required(true),
         ])
         ->columns(6);
@@ -162,9 +163,12 @@ class PaymentResource extends Resource
     {
         return $form
             ->schema([
-                PaymentResource::getApplicationDetails(),
-                PaymentResource::getPaymentDetails(),
-            ]);
+                PaymentResource::getApplicationDetails()
+                        ->columnSpan(3),
+                PaymentResource::getPaymentDetails()
+                        ->columnSpan(3),    
+            ])
+            ->columns(6);
     }
 
     public static function table(Table $table): Table
