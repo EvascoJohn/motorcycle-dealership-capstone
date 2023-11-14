@@ -59,6 +59,8 @@ class UnitReleaseResource extends Resource
                                 $preffered_unit_status = $record->preffered_unit_status;
                                 $search_by = $get('search_by');
 
+                                dd($preffered_unit_status);
+
                                 //check if there is no selected value in search by.
                                 if($search_by == null){return [];}
 
