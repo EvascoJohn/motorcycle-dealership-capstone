@@ -96,10 +96,9 @@ class UnitReleaseResource extends Resource
                                                 } else if ($get('preffered_unit_status') == 'brand_new') {
                                                         $units_query->where('customer_application_id', null);
                                                 }
-
-                                                return [];
-                                                dd($units_query->pluck('chassis_number', 'id')->toArray()[1] == null);
-
+                                                if($units_query->pluck('chassis_number', 'id')->toArray()[1] == null){
+                                                        return [];
+                                                }
                                                 return $units_query->pluck('chassis_number', 'id')->toArray() ?? [];
                                             }
                                     )
