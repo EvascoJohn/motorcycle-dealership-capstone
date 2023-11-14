@@ -74,6 +74,8 @@ class PaymentResource extends Resource
                         $application = CustomerApplication::query()
                                 ->where("id", $state)
                                 ->first();
+                        $set('due_date', "");
+                        $set('payment_amount', "");
                         if($application != null){
                             if($application->application_status == ApplicationStatus::APPROVED_STATUS 
                                     && $application->release_status == ReleaseStatus::UN_RELEASED->value)
@@ -111,8 +113,6 @@ class PaymentResource extends Resource
                                 $set('payment_status', 'delinquent');
                             }
                         }
-                        $set('due_date', "");
-                        $set('payment_amount', "");
                     }
                 ),
         ]);
