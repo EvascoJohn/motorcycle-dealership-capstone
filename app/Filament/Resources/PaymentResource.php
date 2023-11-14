@@ -37,11 +37,11 @@ class PaymentResource extends Resource
             Forms\Components\Section::make('Customer Account')
                     ->schema([
                         Forms\Components\TextInput::make('application_firstname')
-                                ->columnSpan(2)
+                                ->columnSpan(3)
                                 ->disabled()
                                 ->label('First name'),
                         Forms\Components\TextInput::make('application_lastname')
-                                ->columnSpan(2)
+                                ->columnSpan(3)
                                 ->disabled()
                                 ->label('Last name'),
                         Forms\Components\TextInput::make('application_unit')
