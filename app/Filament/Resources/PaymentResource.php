@@ -70,15 +70,6 @@ class PaymentResource extends Resource
                             'overdue' => 'Overdue',
                             'diligent' => 'Diligent',
                         ])
-                        ->readOnly(function (Forms\Get $get):bool{
-                            $dp = CustomerApplication::query()
-                                ->where('id', $get('customer_application_id'))
-                                ->first();
-                            if($dp != null){
-                                return true;
-                            }
-                            return false;
-                        })
                         ->required(),
                 
                 Forms\Components\Select::make('payment_type')->label('Payment Type:')
