@@ -25,15 +25,16 @@ class CreatePayment extends CreateRecord
         dd("after payment is created.");
     }
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        $data['user_id'] = auth()->id();
+    // protected function mutateFormDataBeforeCreate(array $data): array
+    // {
+    //     $data['user_id'] = auth()->id();
     
-        return $data;
-    }
+    //     return $data;
+    // }
 
     protected function beforeCreate(): void
     {
+        dd($this->record);
         $this->getCreateFormAction()->requiresConfirmation(true);
         //gets the customer application object.
         $customer_application = CustomerApplication::query()

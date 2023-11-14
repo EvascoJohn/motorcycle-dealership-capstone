@@ -74,7 +74,6 @@ class PaymentResource extends Resource
                         $application = CustomerApplication::query()
                                 ->where("id", $state)
                                 ->first();
-                        dd($state);
                         $set('due_date', "");
                         $set('payment_amount', "");
                         if($application != null){
