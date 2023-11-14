@@ -80,7 +80,7 @@ class PaymentResource extends Resource
                             if($application->application_status == ApplicationStatus::APPROVED_STATUS ->value
                                     && $application->release_status == ReleaseStatus::UN_RELEASED->value)
                             {
-                                // dd("Down Payment");
+                                dd("Down Payment");
                             }else if($application->application_status == ApplicationStatus::ACTIVE_STATUS->value){
                                 // dd("Amort. Payment");
                                 $state->payment_amount = $application->unit_monthly_amort;
