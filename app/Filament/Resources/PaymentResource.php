@@ -61,10 +61,8 @@ class PaymentResource extends Resource
                 ->relationship(
                         name: 'customerApplication',
                         titleAttribute: 'applicant_lastname',
-                        modifyQueryUsing: fn (Builder $query) => $query->where([
-                            "application_status", ApplicationStatus::ACTIVE_STATUS->value, 
-                            "application_status", ApplicationStatus::APPROVED_STATUS->value
-                ])
+                        modifyQueryUsing: fn (Builder $query) => $query->where("application_status", "Active")
+                                                                                ->orwhere("application_status", "Approved"),
                 )
                 ->label('For Applicant:')
                 ->preload()
@@ -125,13 +123,7 @@ class PaymentResource extends Resource
         return $form
             ->schema([
                 PaymentResource::getApplicationDetails(),
-                Forms\Components\Placeholder::make('due_date')
-                        ->hidden(function(string $operation){
-                            if($operation == "edit"){
-                                return true;
-                            }
-
-                        }),
+                Forms\Components\Placeholder::make('due_date'),
                 Forms\Components\TextInput::make('payment_amount'),
                 Forms\Components\TextInput::make('penalty'),
                 Forms\Components\Select::make('payment_status')
