@@ -71,6 +71,14 @@ class UnitReleaseResource extends Resource
                             Forms\Components\TextInput::make('unit_status')
                                     ->live(500)
                                     ->disabled(),
+                            Forms\Components\Select::make('search_by')
+                                    ->options([
+                                        'engine_no' => "Engine No.",
+                                        'frame_no' => "Frame No.",
+                                        "default" => "Engine No."
+                                    ])
+                                    ->live(500)
+                                    ->disabled(),
                             Forms\Components\Select::make('units_id')
                                     ->live()
                                     ->options(
@@ -78,9 +86,9 @@ class UnitReleaseResource extends Resource
                                                 $preffered_unit_model = $record->unit_model_id;
                                                 $preffered_unit_status = $record->preffered_unit_status;
 
-                                                $unit_query = Models\Unit::query()->where(['unit_model_id' => $preffered_unit_model]);
+                                                $units_query = Models\Unit::query()->where(['unit_model_id' => $preffered_unit_model]);
 
-                                                dd($unit_query->pluck("id", 'chassis_number')->toArray());
+                                                //dd($units_query->pluck("id", 'engine_number')->toArray());
 
                                                 if ($get('preffered_unit_status') == 'repo') {
                                                         $units_query->where('customer_application_id', '!=', null);
