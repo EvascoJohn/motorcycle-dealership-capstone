@@ -70,7 +70,7 @@ class PaymentResource extends Resource
                 ->required()
                 ->live()
                 ->afterStateUpdated(
-                    function(array $state, Forms\Set $set, ?Model $record){
+                    function($state, Forms\Set $set, ?Model $record){
                         $application = CustomerApplication::query()
                                 ->where("id", $state)
                                 ->first();
