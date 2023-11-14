@@ -137,6 +137,7 @@ class PaymentResource extends Resource
                         }),
                 Forms\Components\TextInput::make('payment_amount')
                         ->live()
+                        ->required()
                         ->readOnly(function (Forms\Get $get):bool{
                             $dp = CustomerApplication::query()
                                 ->where('id', $get('customer_application_id'))
