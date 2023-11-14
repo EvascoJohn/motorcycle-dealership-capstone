@@ -40,12 +40,16 @@ class UnitResource extends Resource
                     ->mask(Rawjs::make(<<<'JS'
                         'aaaaaaaa9aa999999'
                     JS))
+                    ->minLength(17)
+                    ->maxLength(17)
                     ->columnSpan(1)
                     ->required(),
             Forms\Components\TextInput::make('engine_number')
                     ->mask(Rawjs::make(<<<'JS'
                         '999aaa99a99999'
                     JS))
+                    ->minLength(14)
+                    ->maxLength(14)
                     ->columnSpan(1)
                     ->required(),
             Forms\Components\Textarea::make('notes')
