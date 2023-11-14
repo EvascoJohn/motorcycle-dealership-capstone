@@ -14,6 +14,7 @@ class Unit extends Model
 
     protected $fillable = 
     [
+        'id',
         'branch_id',
         'unit_model_id',
         'customer_application_id',
