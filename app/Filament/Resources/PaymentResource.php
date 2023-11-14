@@ -128,6 +128,7 @@ class PaymentResource extends Resource
             ->schema([
                 PaymentResource::getApplicationDetails(),
                 Forms\Components\TextInput::make('due_date')
+                        ->readOnly()
                         ->hidden(function(string $operation){
                             if($operation == "edit"){
                                 return true;
