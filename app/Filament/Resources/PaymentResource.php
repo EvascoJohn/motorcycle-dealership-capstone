@@ -51,6 +51,7 @@ class PaymentResource extends Resource
                         }),
                 Forms\Components\TextInput::make('payment_amount')
                         ->live()
+                        ->columnSpan(2)
                         ->required()
                         ->readOnly(function (Forms\Get $get):bool{
                             $dp = CustomerApplication::query()
@@ -69,8 +70,10 @@ class PaymentResource extends Resource
                             'overdue' => 'Overdue',
                             'diligent' => 'Diligent',
                         ])
+                        ->columnSpan(2)
                         ->required(),
-                Forms\Components\TextInput::make('penalty'),
+                Forms\Components\TextInput::make('penalty')
+                        ->columnSpan(2),
                 Forms\Components\Select::make('payment_type')->label('Payment Type:')
                         ->options([
                             "field" => "Field",
@@ -79,7 +82,8 @@ class PaymentResource extends Resource
                         ])
                         ->columnSpan(1)
                         ->required(true),
-        ]);
+        ])
+        ->columns(6);
     }
 
     public static function getPaymentInput(): Forms\Components\Component
