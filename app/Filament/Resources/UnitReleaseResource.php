@@ -98,7 +98,7 @@ class UnitReleaseResource extends Resource
                                                 }
 
                                                 // dd($units_query->pluck('chassis_number', 'id')->toArray());
-                                                return $units_query->pluck('chassis_number', 'id')->toArray() ?? [];
+                                                return $units_query->pluck('chassis_number', 'id')->toArray() ?? [ "" => ""];
                                             }
                                     )
                                     ->afterStateUpdated(
