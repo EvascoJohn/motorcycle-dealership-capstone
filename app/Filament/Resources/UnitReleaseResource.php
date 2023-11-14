@@ -59,8 +59,6 @@ class UnitReleaseResource extends Resource
                                 $preffered_unit_status = $record->preffered_unit_status;
                                 $search_by = $get('search_by');
 
-                                dd($preffered_unit_status);
-
                                 //check if there is no selected value in search by.
                                 if($search_by == null){return [];}
 
@@ -68,9 +66,9 @@ class UnitReleaseResource extends Resource
                                         ->where([
                                                 ['unit_model_id' => $preffered_unit_model],
                                                 ['status' => $preffered_unit_status]
-                                        ]);
+                                        ])->pluck("id", 'engine_number')->toArray();
 
-                                dd($units_query->pluck("id", 'engine_number')->toArray());
+                                dd($units_query);
 
                                 if ($get('preffered_unit_status') == 'repo') {
                                         $units_query->where('customer_application_id', '!=', null);
