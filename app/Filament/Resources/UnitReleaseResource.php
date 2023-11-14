@@ -77,8 +77,7 @@ class UnitReleaseResource extends Resource
                                         'frame_no' => "Frame No.",
                                         "default" => "Engine No."
                                     ])
-                                    ->live(500)
-                                    ->disabled(),
+                                    ->live(500),
                             Forms\Components\Select::make('units_id')
                                     ->live()
                                     ->options(
