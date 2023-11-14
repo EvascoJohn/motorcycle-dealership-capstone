@@ -25,11 +25,6 @@ class CreatePayment extends CreateRecord
         dd("after payment is created.");
     }
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        dd($data['payment_amount']);
-        return $data;
-    }
 
     // protected function mutateFormDataBeforeCreate(array $data): array
     // {
