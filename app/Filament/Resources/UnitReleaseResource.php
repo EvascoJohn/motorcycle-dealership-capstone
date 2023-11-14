@@ -74,7 +74,14 @@ class UnitReleaseResource extends Resource
                             Forms\Components\Select::make('units_id')
                                     ->live()
                                     ->options(
-                                            function (Forms\Get $get): array {
+                                            function (Forms\Get $get, ?Model $record): array {
+                                                $preffered_unit_model = $record->unit_model_id;
+                                                $preffered_unit_status = $record->preffered_unit_status;
+
+                                                $unit_query = Models\Unit::where('unit_model_id', $preffered_unit_model);
+
+                                                dd($unit_query);
+                                                
                                                 $units_query = Models\Unit::where('unit_model_id', $get('unit_model_id'))
                                                 ->where('status', $get('preffered_unit_status'));
 
