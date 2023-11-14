@@ -183,7 +183,7 @@ class PaymentResource extends Resource
                 PaymentResource::getApplicationDetails()
                         ->columnSpan(3),
                 PaymentResource::getApplicationInformation()
-                        ->columnSpane(3),
+                        ->columnSpan(3),
                 PaymentResource::getPaymentDetails()
                         ->columnSpan(3),
             ])
