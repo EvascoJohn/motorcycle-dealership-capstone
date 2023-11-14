@@ -123,11 +123,13 @@ class PaymentResource extends Resource
         return $form
             ->schema([
                 PaymentResource::getApplicationDetails(),
-                Forms\Components\Placeholder::make('due_date')
-                    ->content(fn(?Model $record): string => CustomerApplication::query()
-                            ->where('id', $record->customer_application_id)->first()->due_date ?? "")
-                    ->live(),
+                Forms\Components\TextInput::make('due_date')
+                        ->hidden(function(string $operation){
+                            if($operation == "edit"){
+                                return true;
+                            }
 
+                        }),
                 Forms\Components\TextInput::make('payment_amount'),
                 Forms\Components\TextInput::make('penalty'),
                 Forms\Components\Select::make('payment_status')
