@@ -137,7 +137,15 @@ class PaymentResource extends Resource
                         }),
                 Forms\Components\TextInput::make('payment_amount')
                         ->live()
-                        ->readOnly(),
+                        ->readOnly(function (Forms\Get $get):bool{
+                            $dp = CustomerApplication::query()
+                                ->where('id', $get('customer_application_id'))
+                                ->first();
+                            if($dp != null){
+                                return true;
+                            }
+                            return false;
+                        }),
                 Forms\Components\TextInput::make('penalty'),
                 Forms\Components\Select::make('payment_status')
                         ->live()
