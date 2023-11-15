@@ -36,6 +36,10 @@ class UnitResource extends Resource
                     ->columnSpan(1)
                     ->options(Enums\UnitStatus::class)
                     ->required(),
+            Forms\Components\TextInput::make('chassis_number')
+                    ->readOnly()
+                    ->columnSpan(1)
+                    ->required(),
             Forms\Components\TextInput::make('frame_number')
                     ->mask(Rawjs::make(<<<'JS'
                         'aaaaaaaa9aa999999'
