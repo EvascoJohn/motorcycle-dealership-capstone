@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/own/global.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/own/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('js/own/app.js') }}" />
+    <link rel="stylesheet" href="{{ asset('css/own/media-queries.css') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('css/own/product-page-specs.css') }}" /> --}}
     <title>Document</title>
     <link
