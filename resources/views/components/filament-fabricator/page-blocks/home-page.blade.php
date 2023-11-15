@@ -10,7 +10,7 @@
 
 <section id="Content1">
     <div>
-       <!-- Heading Image -->
+       <!-- Heading Image2 -->
       <img src="{{ $heading_image }}" alt="section1-image-bg" />
       <div class="tagline-text">
         <h2>{{ $hero_title }}</h2>
