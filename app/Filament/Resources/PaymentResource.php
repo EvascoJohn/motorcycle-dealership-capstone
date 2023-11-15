@@ -34,7 +34,8 @@ class PaymentResource extends Resource
     public static function getApplicationInformation(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-            Forms\Components\Section::make('customer_application_group')
+            Forms\Components\Section::make("Customer Application's Information")
+
                     ->schema([
                         Forms\Components\TextInput::make('application_firstname')
                                 ->columnSpan(3)
@@ -60,6 +61,16 @@ class PaymentResource extends Resource
     public static function getPaymentDetails(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
+                Forms\Components\Section::make("Payment is")
+                    ->content(function (Forms\Get $get):string{
+                        $dp = CustomerApplication::query()
+                            ->where('id', $get('customer_application_id'))
+                            ->first();
+                        if($dp != null){
+                            return "Down Payment";
+                        }
+                        return "Monthly Payment";
+                    }),
                 Forms\Components\TextInput::make('due_date')
                         ->columnSpan(6)
                         ->readOnly()
