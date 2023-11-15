@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => env('APP_URL').storage_path('app'),
+            'root' => storage_path('app'),
             'throw' => false,
         ],
 
