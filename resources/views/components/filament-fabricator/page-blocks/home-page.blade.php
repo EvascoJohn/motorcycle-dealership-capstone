@@ -11,7 +11,7 @@
 <section id="Content1">
     <div>
        <!-- Heading Image2 -->
-      <img src="{{ asset($heading_image) }}" alt="section1-image-bg" />
+      <img src="{{ storage_path('app/'.$heading_image) }}" alt="section1-image-bg" />
       <div class="tagline-text">
         <h2>{{ $hero_title }}</h2>
         <div class="buttons">
