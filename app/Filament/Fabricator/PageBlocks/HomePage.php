@@ -14,23 +14,23 @@ class HomePage extends PageBlock
             ->schema([
                 //HERO BLADE TITLE:     TEXT/Text input
                 Forms\Components\TextInput::make('hero_title')
-                        ->helperText(config('customer-website.home-page-block.hero_helper_text'))
-                        ->label('Hero title'),
+                        ->label('Hero title')
+                        ->helperText(config('customer-website.home-page-block.hero_helper_text')),
                 //REGISTER BUTTON:      TEXT/Text input
                 Forms\Components\TextInput::make('register_button')
-                        ->helperText(config('customer-website.home-page-block.register_button_helper_text'))
-                        ->label('Register button'),
+                        ->label('Register button')
+                        ->helperText(config('customer-website.home-page-block.register_button_helper_text')),
                 //EXPLORE               TEXT/Text input
                 Forms\Components\TextInput::make('explore_button')
-                        ->helperText(config('customer-website.home-page-block.explore_button_helper_text'))
-                        ->label('Explore button'),
+                        ->label('Explore button')
+                        ->helperText(config('customer-website.home-page-block.explore_button_helper_text')),
                 //LATEST PRODUCTS TEXT  TEXT/Text input
-                Forms\Components\TextInput::make('explore_button')
+                Forms\Components\TextInput::make('latest_products')
                         ->helperText(config('customer-website.home-page-block.latest_products_helper_text'))
-                        ->label('Explore button'),
+                        ->label('Latest Products'),
                 //REQUREMENTS REPEATER  JSON/Repeater
                 Forms\Components\Repeater::make('requirements')
-                        ->label('Requirements'),
+
             ]);
     }
 
