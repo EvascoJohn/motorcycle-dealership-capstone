@@ -779,7 +779,7 @@ class CustomerApplicationResource extends Resource
                                                 CustomerApplicationResource::getUnitToBeFinanced()
                                                         ->disabled(
                                                                 function(?Model $record){
-                                                                if($record->application_status != null){
+                                                                if($record != null){
                                                                         if($record->application_status == Enums\ApplicationStatus::RESUBMISSION_STATUS){
                                                                                 return false;
                                                                 }
