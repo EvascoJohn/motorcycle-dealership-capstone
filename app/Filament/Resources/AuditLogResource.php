@@ -30,6 +30,8 @@ class AuditLogResource extends Resource
             ]);
     }
 
+
+
     public static function getNavigationGroup(): ?string
     {
         return 'Utilities';
@@ -94,7 +96,7 @@ class AuditLogResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                // Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -114,7 +116,7 @@ class AuditLogResource extends Resource
     {
         return [
             'index' => Pages\ListAuditLogs::route('/'),
-            'create' => Pages\CreateAuditLog::route('/create'),
+            // 'create' => Pages\CreateAuditLog::route('/create'),
             // 'edit' => Pages\EditAuditLog::route('/{record}/edit'),
         ];
     }    
