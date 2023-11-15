@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="product-specs">
-          <img src="{{ $unit->getMedia('product-images')->first()->getUrl() }}" alt="" />
+          <img src="{{ "storage/app/public/".$product->image_file }}" alt="" />
           <div class="heading">
             <h1 class="Title">{{ $unit->model_name }}</h1>
             <h3 class="Price">{{ $unit->price }}</h3>
