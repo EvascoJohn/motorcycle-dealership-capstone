@@ -14,7 +14,7 @@
        <!-- Heading Image -->
       <img src="{{ "storage/app/public/site-images/".$heading_image }}" alt="section1-image-bg" />
       <div class="tagline-text">
-        <h2>{{$heading_title}}</h2>
+        <h2>{{ $hero_title }}</h2>
         <div class="buttons">
           {{-- goes to the products section --}}
           <button class="explore-button" onclick="toggleProductSection()">
