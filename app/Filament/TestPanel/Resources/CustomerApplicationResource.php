@@ -70,7 +70,8 @@ class CustomerApplicationResource extends Resource
                                         ->disabled(fn (Forms\Get $get): bool => ! $get('unit_model_id'))
                                         ->schema([
                                                 Forms\Components\TextInput::make('unit_srp')
-                                                        ->columnSpan(1)
+                                                        ->columnSpan(2)
+                                                        ->readOnly()
                                                         ->required(true)
                                                         ->label('Selling Retail Price:')
                                                         ->numeric(),
