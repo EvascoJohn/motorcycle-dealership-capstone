@@ -20,10 +20,6 @@ class PaymentScope implements Scope
                 //checks customer_id.
                 $builder->where('author_id', auth()->user()->id);
             }
-            if(auth()->user()::class == User::class){
-                //checks branch_id and online application
-                $builder->where('branch_id', auth()->user()->branch_id);
-            }
         };
     }
 }
