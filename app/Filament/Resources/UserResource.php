@@ -43,7 +43,12 @@ class UserResource extends Resource
                                     ->columnSpan(2)
                                     ->columns(2)
                                     ->schema([
-                                            Forms\Components\TextInput::make('name')
+                                            Forms\Components\TextInput::make('firstname')
+                                                    ->columnSpan(2)
+                                                    ->label("Name")
+                                                    ->required()
+                                                    ->maxLength(255),
+                                            Forms\Components\TextInput::make('lastname')
                                                     ->columnSpan(2)
                                                     ->label("Name")
                                                     ->required()
