@@ -42,7 +42,7 @@ class PaymongoController extends Controller
         $response = Curl::to('https://api.paymongo.com/v1/checkout_sessions')
                     ->withHeader('Content-Type: application/json')
                     ->withHeader('accept: application/json')
-                    ->withHeader('Authorization: Basic '.env('AUTH_PAY'))
+                    ->withHeader('Authorization: Basic '.config('app.auth_pay'))
                     ->withData($data)
                     ->asJson()
                     ->post();
@@ -61,7 +61,7 @@ class PaymongoController extends Controller
 
         $response = Curl::to('https://api.paymongo.com/v1/checkout_sessions/'.$sessionId)
                 ->withHeader('accept: application/json')
-                ->withHeader('Authorization: Basic '.env('AUTH_PAY'))
+                ->withHeader('Authorization: Basic '.config('app.auth_pay'))
                 ->asJson()
                 ->get();
 
