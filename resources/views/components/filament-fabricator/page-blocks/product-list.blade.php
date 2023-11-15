@@ -2,7 +2,6 @@
 @props([
     'product_list',
 ])
-
 <section id="Content3">
   <div class="heading">
     <h1 class="Title"> Introducing the Latest Arrival to Our Motorcycle Lineup! </h1>

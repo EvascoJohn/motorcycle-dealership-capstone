@@ -96,7 +96,7 @@
       </div>
     </section>
 
-    <section id="Content3">
+<section id="Content3">
     <div class="container">
       <h2>Look Us on the Map</h2>
       <div class="map-container">
