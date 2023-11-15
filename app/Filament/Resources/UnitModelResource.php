@@ -58,7 +58,7 @@ class UnitModelResource extends Resource
                 ->required()
                 ->columnSpan(1),
             Forms\Components\TextInput::make('fuel_tank_capacity')
-                ->inputMode('decimal')
+                ->numeric()
                 ->required()
                 ->columnSpan(1),
             Forms\Components\TextInput::make('net_weight')
