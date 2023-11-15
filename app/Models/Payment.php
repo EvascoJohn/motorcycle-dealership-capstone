@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\PaymentScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,12 @@ class Payment extends Model
     public function makePayment(){
         dd($this->customerApplication());
     }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new PaymentScope());
+    }
+
 
 
     public static function calculateMonthlyPayments():array{
