@@ -17,8 +17,6 @@ class PaymentScope implements Scope
     {
         if(auth()->check()){
             if(auth()->user()::class == Customer::class){
-                //checks customer_id.
-                $builder->where('author_id', auth()->user()->id);
             }
         };
     }
