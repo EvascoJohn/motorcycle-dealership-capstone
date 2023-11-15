@@ -20,7 +20,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Branch::class)->nullable();
             $table->foreignIdFor(UnitModel::class);
-            $table->string('chassis_number')
+            $table->string('chassis_number')->nullable()
                     ->unique();
             $table->string('frame_number')
                     ->unique();
