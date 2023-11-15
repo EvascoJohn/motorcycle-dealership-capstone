@@ -45,9 +45,7 @@ class UnitModelResource extends Resource
                 ->required()
                 ->columnSpan(1),
             Forms\Components\TextInput::make('engine_oil')
-                ->mask(Rawjs::make(<<<'JS'
-                    '99'
-                JS))
+                ->numeric()
                 ->suffix('L')
                 ->required()
                 ->columnSpan(1),
