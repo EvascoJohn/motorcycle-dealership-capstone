@@ -70,7 +70,7 @@ class ProductsResource extends Resource
         return [
             'index' => Pages\ListProducts::route('/'),
             // 'create' => Pages\CreateProducts::route('/create'),
-            'edit' => Pages\EditProducts::route('/{record}/edit'),
+            // 'edit' => Pages\EditProducts::route('/{record}/edit'),
         ];
     }    
 }
