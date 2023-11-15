@@ -66,12 +66,5 @@ class Customer extends Authenticatable implements FilamentUser, HasName, MustVer
         'password' => 'hashed',
     ];
 
-    public function canAccessPanel(FilamentPanel $panel): bool
-    {
-        if(auth()->user()){
-            return true;
-        };
-        return false;
-    }
 
 }
