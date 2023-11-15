@@ -85,7 +85,7 @@ class PaymentResource extends Resource
                     }
                 }
             ),
-            Forms\Components\TextInput::make('due_date')
+            Forms\Components\TextInput::make('customerApplication.due_date')
                     ->hidden(function(string $operation){
                         if($operation == "edit"){
                             return true;
