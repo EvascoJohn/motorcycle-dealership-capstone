@@ -942,7 +942,8 @@ class CustomerApplicationResource extends Resource
                                             ->columnSpan(3),
                                             InfoLists\Components\Section::make([
                                                     InfoLists\Components\TextEntry::make('applicant_telephone')->label('Contact Number:')
-                                                            ->columnSpan(3),
+                                                            ->columnSpan(3)
+                                                            ->required(),
 
                                             ])
                                             ->columns(6)
