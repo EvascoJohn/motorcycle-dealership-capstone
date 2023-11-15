@@ -410,6 +410,7 @@ main {
 }
 
 #Content3 {
+  background-color: rgba(255, 228, 188, 0.55);
   position: relative;
   overflow: hidden;
   height: auto;
