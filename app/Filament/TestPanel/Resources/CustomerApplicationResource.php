@@ -980,7 +980,7 @@ class CustomerApplicationResource extends Resource
 
                 InfoLists\Components\Section::make('Customer Application')->schema([
 
-                        InfoLists\Components\FieldSet::make('Unit Information')
+                        InfoLists\Components\Fieldset::make('Unit Information')
                                 ->columns(4)
                                 ->columnSpan(2)
                                 ->schema([
