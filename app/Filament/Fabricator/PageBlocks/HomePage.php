@@ -22,7 +22,7 @@ class HomePage extends PageBlock
                         ->required()
                         ->label("Heading Image")
                         ->disk('local')
-                        ->directory('public/site-images')
+                        ->directory('site-images')
                         ->visibility('private')
                         ->acceptedFileTypes(['image/jpeg'])
                         ->getUploadedFileNameForStorageUsing(
