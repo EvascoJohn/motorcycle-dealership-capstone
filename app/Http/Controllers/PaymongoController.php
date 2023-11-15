@@ -48,7 +48,7 @@ class PaymongoController extends Controller
                     ->post();
 
         // dd(env('AUTH_PAY'));
-        // dd($response);
+        dd($response);
     
         Session::put('session_id',$response->data->id);
 
