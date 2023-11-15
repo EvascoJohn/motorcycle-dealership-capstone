@@ -15,7 +15,7 @@ class PaymongoController extends Controller
         $customer_application = CustomerApplication::where("id", $customerApplicationId)->first();
 
 
-        $numberWithoutDecimal = str_replace('.', '', $customer_application->unit_amort_fin);
+        $numberWithoutDecimal = str_replace('.', '', $customer_application->unit_monthly_amort);
 
         $data = [
             'data' => [
@@ -48,7 +48,7 @@ class PaymongoController extends Controller
                     ->post();
 
         // dd(env('AUTH_PAY'));
-        dd($response);
+        // dd($response);
     
         Session::put('session_id',$response->data->id);
 
