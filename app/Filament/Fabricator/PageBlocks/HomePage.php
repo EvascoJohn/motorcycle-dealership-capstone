@@ -49,6 +49,7 @@ class HomePage extends PageBlock
 
     public static function mutateData(array $data): array
     {
+        dd($data);
         return $data;
     }
 }
