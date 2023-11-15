@@ -38,8 +38,7 @@ class UnitResource extends Resource
                     ->required(),
             Forms\Components\TextInput::make('chassis_number')
                     ->readOnly()
-                    ->columnSpan(1)
-                    ->required(),
+                    ->columnSpan(1),
             Forms\Components\TextInput::make('frame_number')
                     ->mask(Rawjs::make(<<<'JS'
                         'aaaaaaaa9aa999999'
