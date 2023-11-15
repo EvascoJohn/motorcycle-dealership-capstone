@@ -865,8 +865,8 @@ class CustomerApplicationResource extends Resource
                                                             ->label('Unit Model'),
                                                         InfoLists\Components\TextEntry::make('unitModel.model_name')
                                                             ->label('Unit Model'),
-                                                        InfoLists\Components\TextEntry::make('units.engine_number')
-                                                                ->label('Engine number')
+                                                        InfoLists\Components\TextEntry::make('units.chasis_number')
+                                                                ->label('Chasis number')
                                                                 ->badge(),   
                                                         InfoLists\Components\TextEntry::make('unit_term')
                                                                 ->label('Unit Term'),
@@ -999,8 +999,8 @@ class CustomerApplicationResource extends Resource
                 Tables\Columns\TextColumn::make('application_status')
                         ->label("Status:")
                         ->badge(),
-                Tables\Columns\TextColumn::make('units.chasis_number')
-                        ->label("unit chasis:")
+                Tables\Columns\TextColumn::make('units.engine_number')
+                        ->label("Engine No.")
                         ->badge(),
                 Tables\Columns\TextColumn::make('applicant_firstname')
                         ->label("First Name:")
