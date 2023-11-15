@@ -166,9 +166,11 @@ class CustomerApplicationResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('applicant_telephone')
                                         ->columnSpan(3)
-                                        ->label('Telephone:'),
+                                        ->label('Telephone:')
+                                        ->required(),
                                 Forms\Components\TextInput::make('email')
                                         ->columnSpan(3)
+                                        ->required()
                                         ->label('Email:'),
                             ])
                         ->columnSpan(3)
@@ -891,8 +893,7 @@ class CustomerApplicationResource extends Resource
                                             ->columnSpan(3),
                                             InfoLists\Components\Section::make([
                                                     InfoLists\Components\TextEntry::make('applicant_telephone')->label('Contact Number:')
-                                                            ->columnSpan(3)
-                                                            ->required(),
+                                                            ->columnSpan(3),
 
                                             ])
                                             ->columns(6)
