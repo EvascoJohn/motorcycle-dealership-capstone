@@ -61,7 +61,7 @@ class PaymentResource extends Resource
     public static function getPaymentDetails(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-                Forms\Components\Section::make("Payment is")
+                Forms\Components\Placeholder::make("Payment is")
                     ->content(function (Forms\Get $get):string{
                         $dp = CustomerApplication::query()
                             ->where('id', $get('customer_application_id'))
