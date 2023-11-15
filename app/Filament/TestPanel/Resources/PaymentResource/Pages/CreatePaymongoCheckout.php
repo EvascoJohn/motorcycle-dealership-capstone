@@ -16,6 +16,7 @@ use App\Models\CustomerApplicationMaintenance;
 use Filament\Facades\Filament;
 use Filament\Forms\Form;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class CreatePaymongoCheckout extends Page
 {
@@ -138,11 +139,11 @@ class CreatePaymongoCheckout extends Page
                         $set('application_unit',  "");
                         $set('application_unit_price',  "");
                         if($application != null){
-                            if($application->application_status == ApplicationStatus::APPROVED_STATUS ->value
-                                    && $application->release_status == ReleaseStatus::UN_RELEASED->value)
+                            if($application->application_status == Enums\ApplicationStatus::APPROVED_STATUS ->value
+                                    && $application->release_status == Enums\ReleaseStatus::UN_RELEASED->value)
                             {
                                 dd("Down Payment");
-                            }else if($application->application_status == ApplicationStatus::ACTIVE_STATUS->value){
+                            }else if($application->application_status == Enums\ApplicationStatus::ACTIVE_STATUS->value){
                                 // dd("Amort. Payment");
                                 $state->payment_amount = $application->unit_monthly_amort;
                                 dd($record->payment_amount);
