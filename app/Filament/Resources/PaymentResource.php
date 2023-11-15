@@ -102,8 +102,6 @@ class PaymentResource extends Resource
                         ])
                         ->columnSpan(2)
                         ->required(),
-                Forms\Components\TextInput::make('penalty')
-                        ->columnSpan(2),
                 Forms\Components\Select::make('payment_type')->label('Payment Type:')
                         ->options([
                             "field" => "Field",
