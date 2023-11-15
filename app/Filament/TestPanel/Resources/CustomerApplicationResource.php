@@ -722,7 +722,7 @@ class CustomerApplicationResource extends Resource
     public static function getResubmissionNotes(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-                Forms\Components\TextArea::make('resubmission_note')
+                Forms\Components\Textarea::make('resubmission_note')
                         ->columnSpan(1)
                         ->label('Resubmission Note')
                         ->disabled(true)
