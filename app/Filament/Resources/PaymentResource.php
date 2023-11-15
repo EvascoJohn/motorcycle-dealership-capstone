@@ -77,9 +77,9 @@ class PaymentResource extends Resource
                                 ->where('id', $get('customer_application_id'))
                                 ->first();
                             if($dp != null){
-                                return true;
+                                return false;
                             }
-                            return false;
+                            return true;
                         }),
                 Forms\Components\Select::make('payment_status')
                         ->live()
