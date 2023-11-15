@@ -248,7 +248,7 @@ class CreatePaymongoCheckout extends Page
 
     public function save(){
         $data = $this->form->getState();
-        return redirect()->route("paymongo");
+        return redirect()->route("paymongo", ["customerApplicationId" => $data['customer_application_id']]);
     }
 
     public function createAction(): Action
