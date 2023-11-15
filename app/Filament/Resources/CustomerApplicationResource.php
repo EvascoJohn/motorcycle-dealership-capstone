@@ -865,8 +865,8 @@ class CustomerApplicationResource extends Resource
                                                             ->label('Unit Model'),
                                                         InfoLists\Components\TextEntry::make('unitModel.model_name')
                                                             ->label('Unit Model'),
-                                                        InfoLists\Components\TextEntry::make('units.chasis_number')
-                                                                ->label('Chasis number')
+                                                        InfoLists\Components\TextEntry::make('units.engine_number')
+                                                                ->label('Engine number')
                                                                 ->badge(),   
                                                         InfoLists\Components\TextEntry::make('unit_term')
                                                                 ->label('Unit Term'),
