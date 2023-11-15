@@ -859,25 +859,25 @@ class CustomerApplicationResource extends Resource
                                                     ])->columnSpan(2),
                                             InfoLists\Components\Section::make("Motorcycle's Information")
                                                     ->schema([
-                                                            InfoLists\Components\TextEntry::make('unitModel.model_name')
+                                                        InfoLists\Components\TextEntry::make('unitModel.model_name')
                                                             ->label('Unit Model'),
+                                                        InfoLists\Components\TextEntry::make('unitModel.model_name')
+                                                            ->label('Unit Model'),
+                                                        InfoLists\Components\TextEntry::make('units.chasis_number')
+                                                                ->label('Chasis number')
+                                                                ->badge(),   
+                                                        InfoLists\Components\TextEntry::make('unit_term')
+                                                                ->label('Unit Term'),
+                                                        InfoLists\Components\TextEntry::make('unit_ttl_dp')
+                                                                ->label('Down Payment')
+                                                                ->money('php'),   
+                                                        InfoLists\Components\TextEntry::make('unit_amort_fin')
+                                                                ->label('Monthly Amortization')
+                                                                ->money('php'),                     
+                                                        InfoLists\Components\TextEntry::make('unit_srp')
+                                                                ->label('Unit Price')
+                                                                ->money('php'),
                                                     ])->columnSpan(4),
-                                            InfoLists\Components\TextEntry::make('unitModel.model_name')
-                                                    ->label('Unit Model'),
-                                            InfoLists\Components\TextEntry::make('units.chasis_number')
-                                                    ->label('Chasis number')
-                                                    ->badge(),   
-                                            InfoLists\Components\TextEntry::make('unit_term')
-                                                    ->label('Unit Term'),
-                                            InfoLists\Components\TextEntry::make('unit_ttl_dp')
-                                                    ->label('Down Payment')
-                                                    ->money('php'),   
-                                            InfoLists\Components\TextEntry::make('unit_amort_fin')
-                                                    ->label('Monthly Amortization')
-                                                    ->money('php'),                     
-                                            InfoLists\Components\TextEntry::make('unit_srp')
-                                                    ->label('Unit Price')
-                                                    ->money('php'),
                                     ])
                                     ->columns(6),
                                 InfoLists\Components\Tabs\Tab::make("Customer's Information")
