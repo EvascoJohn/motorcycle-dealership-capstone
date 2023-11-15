@@ -211,7 +211,7 @@ class PaymentResource extends Resource
                     Tables\Columns\TextColumn::make('id')
                             ->label('ID')
                             ->searchable(),
-                    Tables\Columns\TextColumn::make('customerApplication.applicatn_firstname')
+                    Tables\Columns\TextColumn::make('customerApplication.applicant_firstname')
                             ->label('First Name')
                             ->searchable(),
                     Tables\Columns\TextColumn::make('payment_amount')
