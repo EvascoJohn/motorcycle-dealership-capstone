@@ -12,7 +12,7 @@
         <h2>{{ $heading_title }}</h2>
         <div class="buttons">
           {{-- goes to the products section --}}
-          <button class="explore-button" onclick="window.location.href = '/products';">
+          <button class="explore-button" onclick="toggleProductSection()">
             Explore
           </button>
           {{-- goes to the registration form --}}
