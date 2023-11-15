@@ -7,6 +7,8 @@ return [
 
     'date_format' => 'd/m/Y',
     'auth_pay' => 'c2tfdGVzdF90WjdNdUFUOVllWThvUzFTTlE5VmJRVlI6',
+    'site-images-directoty' => "storage/app/public",
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
