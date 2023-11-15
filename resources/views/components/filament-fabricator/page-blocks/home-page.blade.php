@@ -1,7 +1,6 @@
 @aware(['page'])
 @props([
     'heading_image',
-    'heading_title',
     'hero_title',
     'register_button',
     'explore_button',
@@ -12,7 +11,7 @@
 <section id="Content1">
     <div>
        <!-- Heading Image -->
-      <img src="{{ "storage/app/public/site-images/".$heading_image }}" alt="section1-image-bg" />
+      <img src="{{ $heading_image }}" alt="section1-image-bg" />
       <div class="tagline-text">
         <h2>{{ $hero_title }}</h2>
         <div class="buttons">
