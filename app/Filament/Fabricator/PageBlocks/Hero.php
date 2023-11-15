@@ -27,17 +27,6 @@ class Hero extends PageBlock
                             'productpage-hero-image' => "products page",
                             'contactpage-hero-image' => "contact us page",
                         ]),
-
-                Forms\Components\FileUpload::make("heading_image")
-                        ->required()
-                        ->label("Heading Image")
-                        ->disk('local')
-                        ->directory('public/site-images')
-                        ->visibility('private')
-                        ->acceptedFileTypes(['image/jpeg'])
-                        ->getUploadedFileNameForStorageUsing(
-                            fn (Forms\Get $get, TemporaryUploadedFile $file): string => (string) $get('image_for').".jpg"
-                        ),
             ]);
     }
 

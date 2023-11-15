@@ -1,7 +1,12 @@
 @aware(['page'])
 @props([
     'heading_image',
-    'heading_title'
+    'heading_title',
+    'hero_title',
+    'register_button',
+    'explore_button',
+    'latest_products',
+    'requirements',
 ])
 
 <section id="Content1">
@@ -13,11 +18,11 @@
         <div class="buttons">
           {{-- goes to the products section --}}
           <button class="explore-button" onclick="toggleProductSection()">
-            Explore
+            {{ $explore_button }}
           </button>
           {{-- goes to the registration form --}}
           <button class="register-button" onclick="window.location.href = '/customer';">
-            Register
+            {{ $register_button }}
           </button>
         </div>
       </div>

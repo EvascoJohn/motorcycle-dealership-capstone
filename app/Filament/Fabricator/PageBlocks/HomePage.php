@@ -5,6 +5,7 @@ namespace App\Filament\Fabricator\PageBlocks;
 use Filament\Forms\Components\Builder\Block;
 use Z3d0X\FilamentFabricator\PageBlocks\PageBlock;
 use Filament\Forms;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class HomePage extends PageBlock
 {
@@ -16,6 +17,17 @@ class HomePage extends PageBlock
                 Forms\Components\TextInput::make('hero_title')
                         ->label('Hero title')
                         ->helperText(config('customer-website.home-page-block.hero_helper_text')),
+                //HOME PAGE HERO IMAGE IMAGE
+                Forms\Components\FileUpload::make("heading_image")
+                        ->required()
+                        ->label("Heading Image")
+                        ->disk('local')
+                        ->directory('public/site-images')
+                        ->visibility('private')
+                        ->acceptedFileTypes(['image/jpeg'])
+                        ->getUploadedFileNameForStorageUsing(
+                            fn (Forms\Get $get, TemporaryUploadedFile $file): string => (string) "homepage-hero-image.jpg"
+                        ),
                 //REGISTER BUTTON:      TEXT/Text input
                 Forms\Components\TextInput::make('register_button')
                         ->label('Register button')
@@ -30,6 +42,7 @@ class HomePage extends PageBlock
                         ->label('Latest Products'),
                 //REQUREMENTS REPEATER  JSON/Repeater
                 Forms\Components\Repeater::make('requirements')
+
 
             ]);
     }
