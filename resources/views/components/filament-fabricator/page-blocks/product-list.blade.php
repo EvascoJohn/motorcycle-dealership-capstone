@@ -4,7 +4,7 @@
 ])
 <section id="Content3">
   <div class="heading">
-    <h1 class="Title"> Introducing Our Motorcycle Lineup! </h1>
+    <h1 class="Title">Introducing Our Motorcycle Lineup! </h1>
   </div>
   <div class="home-product-row"> @foreach ($product_list as $product) 
     <div class="home-product-col">
