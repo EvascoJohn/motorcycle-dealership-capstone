@@ -64,7 +64,7 @@
 
   @foreach ($requirements as $requirement)
   <div class="specs-content">
-    <div class="specs-title">requirement</div>
+    <div class="specs-title">$requirement</div>
   </div>
   @endforeach
   </div>
