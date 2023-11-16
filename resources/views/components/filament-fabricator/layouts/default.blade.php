@@ -9,11 +9,6 @@
     'product_list',
     'requirements',
 ])
-{{-- <x-filament-fabricator::layouts.base :title="$page->title">
-
-    <x-filament-fabricator::page-blocks :blocks="$page->blocks" />
-
-</x-filament-fabricator::layouts.base> --}}
 
 <!DOCTYPE html>
 <html lang="en">
