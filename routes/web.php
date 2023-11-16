@@ -72,7 +72,7 @@ Route::redirect('/login', '/customer/login')->name('login');
 
 Route::post('/login', [CustomerLogin::class, 'authenticate']);
 
-Route::get('customer/register')
+Route::get('customer/login')
 ->name('register')
 ->middleware('auth','auth:web');
 
