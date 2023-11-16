@@ -61,11 +61,10 @@
     </p>
   </div>
   <div class="container">
-  @foreach ($requirements as $requirement)
-  <div class="specs-content">
-    {{ dd($requirements) }}
-    <div class="specs-title">{{ $requirement[0] }}</div>
-  </div>
+    @foreach ($requirements as $requirement)
+    <div class="specs-content">
+      <div class="specs-title">{{ $requirement['requirement'] }}</div>
+    </div>
   @endforeach
   </div>
   <div class="c4-buttons">
