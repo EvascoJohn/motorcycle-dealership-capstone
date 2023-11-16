@@ -36,7 +36,7 @@
  
      {{-- Footer Here --}}
     </x-filament-fabricator::layouts.base>
-    {{-- @filamentScripts --}}
+    @filamentScripts
     <script type="text/javascript" src="{{ asset('js/own/script.js') }}"></script>
 </body>
 </html>
