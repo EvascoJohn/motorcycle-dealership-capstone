@@ -36,6 +36,13 @@ class CustomerApplicationResource extends Resource
         return True;
     }
 
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getCancelFormAction(),
+        ];
+    }
+
     public static function getUnitToBeFinanced(): Forms\Components\Component
     {
                 return Forms\Components\Group::make([

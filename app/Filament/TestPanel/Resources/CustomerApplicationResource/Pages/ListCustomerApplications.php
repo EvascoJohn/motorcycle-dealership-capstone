@@ -14,7 +14,7 @@ class ListCustomerApplications extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->label("Send Application"),
+                    ->label("Send Application"),
         ];
     }
 }
