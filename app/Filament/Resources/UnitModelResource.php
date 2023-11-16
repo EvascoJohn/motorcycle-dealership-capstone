@@ -87,11 +87,13 @@ class UnitModelResource extends Resource
     public static function getImportantDetailsComponent(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-                Forms\Components\FileUpload::make('image_file')
-                    ->columnSpan(3)
-                    ->directory('unit_model_images')
-                    ->acceptedFileTypes(['image/png','image/jpg'])
-                    ->disk('public'),
+            Forms\Components\FileUpload::make("image_file")
+                        ->required()
+                        ->label("Heading Image")
+                        ->disk('public')
+                        ->directory('unit_model_images')
+                        ->visibility('private')
+                        ->acceptedFileTypes(['image/jpeg']),
                 Forms\Components\TextInput::make('model_name')
                     ->maxLength(255)
                     ->required()
