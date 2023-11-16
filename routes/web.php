@@ -70,11 +70,11 @@ Route::prefix('/products')->group(function () {
 
 // Route::post('/login', [CustomerLogin::class, 'authenticate']);
 
-Route::get('customer/login')
-->name('login')
-->middleware('auth','auth:web');
+// Route::get('customer/login')
+// ->name('login')
+// ->middleware('auth','auth:web');
 
-Route::post('/register', [CustomerController::class, 'store']);
+// Route::post('/register', [CustomerController::class, 'store']);
 
 // Route::get('/logout', [CustomerController::class, 'destroy'])
 // ->name('logout');
