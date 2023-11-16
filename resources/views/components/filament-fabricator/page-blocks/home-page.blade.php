@@ -1,5 +1,6 @@
 @aware(['page'])
 @props([
+    'company_name'
     'heading_image',
     'hero_title',
     'register_button',
