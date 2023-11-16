@@ -2,6 +2,7 @@
 
 namespace App\Filament\Fabricator\PageBlocks;
 
+use App\Models\UnitModel;
 use Filament\Forms\Components\Builder\Block;
 use Z3d0X\FilamentFabricator\PageBlocks\PageBlock;
 use Filament\Forms;
@@ -42,14 +43,13 @@ class HomePage extends PageBlock
                         ->label('Latest Products'),
                 //REQUREMENTS REPEATER  JSON/Repeater
                 Forms\Components\Repeater::make('requirements')
-
-
             ]);
     }
 
     public static function mutateData(array $data): array
     {
         $data['company_name'] = env('APP_NAME');
+        $data['products'] = UnitModel::query()->take(3);
         return $data;
     }
 }
