@@ -31,11 +31,11 @@
 </section>
 
 
-<section id="Content3" style="bg:white">
+<section id="Content3">
   <div class="heading">
     <h1 class="Title"> {{ $latest_products }} </h1>
   </div>
-  <div class="home-product-row"> @foreach ($product_list as $product) 
+  <div class="home-product-row" style="backgroud-color:white"> @foreach ($product_list as $product) 
     <div class="home-product-col">
       <img src="{{ "storage/app/public/".$product->image_file }}" alt="" />
       <h2 class="testi-name">{{ $product->model_name }}</h2>
