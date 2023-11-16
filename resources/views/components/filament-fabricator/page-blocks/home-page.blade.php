@@ -78,6 +78,6 @@
       </div>
     </div> @endforeach </div>
   <div class="c3-buttons">
-    <a href="../html/products.html">See More</a>
+    <a href="/products" >See More</a>
   </div>
 </section>
