@@ -68,15 +68,13 @@ Route::prefix('/products')->group(function () {
     });
 });
 
-Route::redirect('/login', '/customer/login')->name('login');
-
-Route::post('/login', [CustomerLogin::class, 'authenticate']);
+// Route::post('/login', [CustomerLogin::class, 'authenticate']);
 
 Route::get('customer/login')
-->name('register')
+->name('login')
 ->middleware('auth','auth:web');
 
 Route::post('/register', [CustomerController::class, 'store']);
 
-Route::get('/logout', [CustomerController::class, 'destroy'])
-->name('logout');
+// Route::get('/logout', [CustomerController::class, 'destroy'])
+// ->name('logout');
