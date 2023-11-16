@@ -79,12 +79,7 @@
       <div class="content">
         <div class="row1 box">
           <div class="upper">
-            <div class="topic">BrandName</div>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet,
-              deleniti enim eum itaque voluptas saepe provident atque voluptate
-              tempore deserunt at exercitationem soluta.
-            </p>
+            <div class="topic">{{ env('APP_NAME') }}</div>
           </div>
         </div>
   
