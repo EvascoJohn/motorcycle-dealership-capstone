@@ -35,8 +35,8 @@
     <x-filament-fabricator::page-blocks :blocks="$page->blocks" />
  
      {{-- Footer Here --}}
-    {{-- </x-filament-fabricator::layouts.base>
-    @filamentScripts --}}
+    </x-filament-fabricator::layouts.base>
+    {{-- @filamentScripts --}}
     <script type="text/javascript" src="{{ asset('js/own/script.js') }}"></script>
 </body>
 </html>
