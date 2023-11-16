@@ -11,9 +11,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/own/global.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/miranda/global.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/miranda/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/own/media-queries.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/miranda/media-queries.css') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('css/own/product-page-specs.css') }}" /> --}}
     <title>Motorstar - Probike Motorcycle Center</title>
     <link
