@@ -43,6 +43,10 @@ class HomePage extends PageBlock
                         ->label('Latest Products'),
                 //REQUREMENTS REPEATER  JSON/Repeater
                 Forms\Components\Repeater::make('requirements')
+                        ->schema([
+                                Forms\Components\TextInput::make("requirement")
+                        ])
+                        ->deletable(false)
             ]);
     }
 
