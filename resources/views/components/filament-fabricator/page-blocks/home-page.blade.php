@@ -64,11 +64,11 @@
 
   @foreach ($requirements as $requirement)
   <div class="specs-content">
-    <div class="specs-title">$requirement</div>
+    <div class="specs-title">{{ $requirement }}</div>
   </div>
   @endforeach
   </div>
   <div class="c4-buttons">
-    <a href="../html/application.html">Application</a>
+    {{-- <a href="../html/application.html">Application</a> --}}
   </div>
 </section>
