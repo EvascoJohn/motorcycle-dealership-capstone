@@ -49,7 +49,7 @@ class HomePage extends PageBlock
 
     public static function mutateData(array $data): array
     {
-        $data['company_name'] = env('APPNAME');
+        $data['company_name'] = env('APP_NAME');
         return $data;
     }
 }
