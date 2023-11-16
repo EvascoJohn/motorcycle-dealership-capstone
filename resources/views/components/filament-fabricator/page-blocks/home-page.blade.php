@@ -6,7 +6,7 @@
     'register_button',
     'explore_button',
     'latest_products',
-    'products_list'
+    'products_list',
     'requirements',
 ])
 
