@@ -24,7 +24,6 @@ class ProductList extends PageBlock
         // dd(Unit::all()->first());
         $data["product_list"] = UnitModel::all();
         // dd(UnitModel::all()->first());
-        dd($data);
         return $data;
     }
 }
