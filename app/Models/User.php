@@ -28,7 +28,7 @@ class User extends Authenticatable implements FilamentUser
      * @var array<int, string>
      */
 
-    public static $filamentUserColumn = 'is_filament_user';
+    public static $filamentUserColumn = 'is_admin';
     protected $fillable = [
         'firstname',
         'lastname',
