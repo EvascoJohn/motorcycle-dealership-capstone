@@ -7,7 +7,7 @@ return [
 
     'date_format' => 'd/m/Y',
     'auth_pay' => 'c2tfdGVzdF90WjdNdUFUOVllWThvUzFTTlE5VmJRVlI6',
-    'site-images-directory' => "storage/app/public",
+    'site-images-directory' => "storage/app/public/",
 
     /*
     |--------------------------------------------------------------------------
