@@ -50,6 +50,7 @@ class HomePage extends PageBlock
     {
         $data['company_name'] = env('APP_NAME');
         $data['product_list'] = UnitModel::query()->take(3);
+        dd($data['products_list']);
         return $data;
     }
 }
