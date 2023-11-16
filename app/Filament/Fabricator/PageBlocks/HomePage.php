@@ -52,6 +52,7 @@ class HomePage extends PageBlock
 
     public static function mutateData(array $data): array
     {
+        dd('requirements');
         $data['company_name'] = env('APP_NAME');
         $data['product_list'] = UnitModel::query()->take(3)->get();
         return $data;
