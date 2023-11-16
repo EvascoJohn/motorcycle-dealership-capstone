@@ -32,8 +32,8 @@ class PaymongoController extends Controller
                         'gcash', 'card'
                     ],
                     // route("paymongo", ["customerApplicationId" => 1])
-                    'success_url' => "http://127.0.0.1:8000/customer/payments",
-                    'cancel_url' => 'http://127.0.0.1:8000/customer/payments',
+                    'success_url' => env('APP_DOMAIN')."customer/payments",
+                    'cancel_url' => env('APP_DOMAIN').'customer/payments',
                     'description' => "Payment Description",
                 ],
             ]
