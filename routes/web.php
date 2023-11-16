@@ -72,8 +72,9 @@ Route::redirect('/login', '/customer/login')->name('login');
 
 Route::post('/login', [CustomerLogin::class, 'authenticate']);
 
-Route::get('/register', [CustomerController::class, 'create'])
-->name('register');
+Route::get('customer/register')
+->name('register')
+->middleware('auth','auth:web');
 
 Route::post('/register', [CustomerController::class, 'store']);
 
