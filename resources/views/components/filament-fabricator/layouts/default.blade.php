@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/own/global.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/own/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/own/media-queries.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/own/application.css') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('css/own/product-page-specs.css') }}" /> --}}
     <title>Motorstar - Probike Motorcycle Center</title>
     <link
