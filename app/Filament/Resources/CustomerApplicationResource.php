@@ -754,12 +754,6 @@ class CustomerApplicationResource extends Resource
     {
         return $form
         ->schema([
-                // Forms\Components\Select::make("branch_id")
-                // ->options([
-                //     Models\Branch::query()->where("id", auth()->user()->branch_id)->first()->id => 
-                //     Models\Branch::query()->where("id", auth()->user()->branch_id)->first()->full_address,
-                // ])
-                // ->preload(),
 
                 Forms\Components\Placeholder::make('Branch')
                 ->content(Models\Branch::query()->where("id", auth()->user()->branch_id)->first()->full_address),
@@ -928,59 +922,6 @@ class CustomerApplicationResource extends Resource
                     ])
                     ->columns(6)
                     ->columnSpan(6),
-
-                // InfoLists\Components\Section::make('Customer Application')->schema([
-
-                //         InfoLists\Components\FieldSet::make('Unit Information')
-                //                 ->columns(4)
-                //                 ->columnSpan(2)
-                //                 ->schema([
-                //                         InfoLists\Components\TextEntry::make('unitModel.model_name')
-                //                                 ->label('Unit Model'),
-                //                         InfoLists\Components\TextEntry::make('units.chasis_number')
-                //                                 ->label('Chasis number')
-                //                                 ->badge(),   
-                //                         InfoLists\Components\TextEntry::make('unit_term')
-                //                                 ->label('Unit Term'),
-                //                         InfoLists\Components\TextEntry::make('unit_ttl_dp')
-                //                                 ->label('Down Payment')
-                //                                 ->money('php'),   
-                //                         InfoLists\Components\TextEntry::make('unit_amort_fin')
-                //                                 ->label('Monthly Amortization')
-                //                                 ->money('php'),                     
-                //                         InfoLists\Components\TextEntry::make('unit_srp')
-                //                                 ->label('Unit Price')
-                //                                 ->money('php'),
-                //         ]),
-
-                //     InfoLists\Components\FieldSet::make('Applicant Information')
-                //             ->columns(6)
-                //             ->columnSpan(4)
-                //             ->schema([
-                //                 InfoLists\Components\TextEntry::make('applicant_firstname')->label('First Name:'),
-                //                 InfoLists\Components\TextEntry::make('applicant_lastname')->label('Last Name:'),
-                //                 InfoLists\Components\ImageEntry::make('applicant_valid_id')->label('Provided ID:'),
-                //                 InfoLists\Components\TextEntry::make('applicant_house')->label('House:'),  
-                //                 InfoLists\Components\TextEntry::make('applicant_present_address')->label('Present Address:'),
-                //                 InfoLists\Components\TextEntry::make('applicant_telephone')->label('Contacts:'),       
-                //     ]),
-
-                //     InfoLists\Components\FieldSet::make("Applicant's Statement of Monthly Income")->schema([
-                //             InfoLists\Components\TextEntry::make('gross_monthly_income')
-                //                     ->label("Gross Monthly Income:")
-                //                     ->color('success')
-                //                     ->money('php'),
-                //             InfoLists\Components\TextEntry::make('total_expenses')
-                //                     ->label("Total Expenses:")
-                //                     ->color('danger')
-                //                     ->money('php'),
-                //             InfoLists\Components\TextEntry::make('net_monthly_income')
-                //                     ->label("Net Monthly Income:")
-                //                     ->color('success')
-                //                     ->money('php'),
-                //     ])->columns(3)->columnSpan(4),
-
-                // ]),
 
             ])->columns(4);
     }
