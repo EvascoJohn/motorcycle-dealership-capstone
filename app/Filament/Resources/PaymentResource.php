@@ -121,8 +121,8 @@ class PaymentResource extends Resource
                 Forms\Components\Select::make('search_by')
                 ->options([
                     'id' => "Applicaion ID",
-                    'applicant_lastname' => "First name",
-                    'applicant_firstname' => "Last name",
+                    'applicant_lastname' => "Last name",
+                    'applicant_firstname' => "First name",
                 ])
                 ->live(),
                 Forms\Components\Select::make('customer_application_id')
