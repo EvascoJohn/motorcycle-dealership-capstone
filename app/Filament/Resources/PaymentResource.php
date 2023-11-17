@@ -124,15 +124,9 @@ class PaymentResource extends Resource
     {
         return Forms\Components\Group::make([
                 Forms\Components\Select::make('customer_application_id')
-                ->relationship(
-                        name: 'customerApplication',
-                        titleAttribute: 'id',
-                        modifyQueryUsing: fn (Builder $query) => $query->where("application_status", "Active")
-                                                                    ->orwhere("application_status", "Approved"),
-                )
-                ->label('For Applicant:')
-                ->preload()
-                ->searchable(['id', 'applicant_firstname', 'applicant_lastname'])
+                ->searchable()
+                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::where('name', 'like', "%{$search}%")->limit(50)->pluck('id', 'id')->toArray())
+                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)?->id)
                 ->required()
                 ->live()
                 ->afterStateUpdated(
