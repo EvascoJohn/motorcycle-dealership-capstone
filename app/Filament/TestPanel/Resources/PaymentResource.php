@@ -39,7 +39,7 @@ class PaymentResource extends Resource
     public static function getApplicationInformation(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-            Forms\Components\Section::make('customer_application_group')
+            Forms\Components\Section::make("Customer Application's Information")
                     ->schema([
                         Forms\Components\TextInput::make('application_firstname')
                                 ->columnSpan(3)
@@ -96,8 +96,6 @@ class PaymentResource extends Resource
                         ])
                         ->columnSpan(2)
                         ->required(),
-                Forms\Components\TextInput::make('penalty')
-                        ->columnSpan(2),
                 Forms\Components\Select::make('payment_type')->label('Payment Type:')
                         ->options([
                             "field" => "Field",
