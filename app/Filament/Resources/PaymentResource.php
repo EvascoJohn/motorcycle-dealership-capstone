@@ -64,7 +64,7 @@ class PaymentResource extends Resource
                     ->content(function (Forms\Get $get):string{
                         $dp = CustomerApplication::query()
                             ->where('id', $get('customer_application_id'))
-                            ->first();
+                            ->first()->unit_monthly_amort;
                         if($dp != null){
                             return "Down Payment";
                         }
