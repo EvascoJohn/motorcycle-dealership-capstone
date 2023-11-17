@@ -72,7 +72,8 @@ class PaymentResource extends Resource
                             return "Monthly Payment";
                         }
                         return "";
-                    }),
+                    })
+                    ->columnSpan(2),
                 Forms\Components\TextInput::make('due_date')
                         ->columnSpan(6)
                         ->readOnly()
