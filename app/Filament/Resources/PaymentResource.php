@@ -64,11 +64,14 @@ class PaymentResource extends Resource
                     ->content(function (Forms\Get $get):string{
                         $dp = CustomerApplication::query()
                             ->where('id', $get('customer_application_id'))
-                            ->first()->unit_monthly_amort;
+                            ->first();
                         if($dp != null){
-                            return "Down Payment";
+                            if($dp->unit_monthly_amort != null){
+                                return "Down Payment";
+                            }
+                            return "Monthly Payment"
                         }
-                        return "Monthly Payment";
+                        return "";
                     }),
                 Forms\Components\TextInput::make('due_date')
                         ->columnSpan(6)
