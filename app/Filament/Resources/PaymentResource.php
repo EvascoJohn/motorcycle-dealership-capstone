@@ -30,7 +30,6 @@ class PaymentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
-
     public static function getApplicationInformation(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
@@ -124,6 +123,7 @@ class PaymentResource extends Resource
                     'applicant_lastname' => "Last name",
                     'applicant_firstname' => "First name",
                 ])
+                
                 ->live(),
                 Forms\Components\Select::make('customer_application_id')
                 ->searchable()

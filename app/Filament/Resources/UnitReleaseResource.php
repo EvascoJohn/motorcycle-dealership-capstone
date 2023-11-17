@@ -42,6 +42,7 @@ class UnitReleaseResource extends Resource
         return false;
     }
 
+
     public static function getAvailableUnit(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
