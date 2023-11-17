@@ -46,7 +46,6 @@ class CustomerApplicationResource extends Resource
                         ->columnSpan(2)
                         ->schema([
                                 Forms\Components\Select::make('unit_model_id')
-                                        ->hint("Ex. Mio soul i")
                                         ->columnSpan(2)
                                         ->label('Unit Model')
                                         ->relationship(
@@ -77,7 +76,7 @@ class CustomerApplicationResource extends Resource
                                                         ->label('Selling Retail Price:')
                                                         ->numeric(),
                                 ]),
-                ]),
+                        ]),
                 ]);
     }
 

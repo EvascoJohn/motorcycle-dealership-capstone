@@ -22,16 +22,10 @@ class Payment extends Model
         'payment_amount',           // 2000.00
     ];
 
-    public function makePayment(){
-        dd($this->customerApplication());
-    }
-
     protected static function booted(): void
     {
         static::addGlobalScope(new PaymentScope());
     }
-
-
 
     public static function calculateMonthlyPayments():array{
         $monthlyPayments = DB::table('payments')
