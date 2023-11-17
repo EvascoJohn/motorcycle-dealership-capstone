@@ -69,7 +69,7 @@ class PaymentResource extends Resource
                             if($dp->unit_monthly_amort != null){
                                 return "Down Payment";
                             }
-                            return "Monthly Payment"
+                            return "Monthly Payment";
                         }
                         return "";
                     }),
