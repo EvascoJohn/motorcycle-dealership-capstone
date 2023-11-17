@@ -114,22 +114,20 @@ class PaymentResource extends Resource
         ->columns(6);
     }
 
-    public static function getPaymentInput(): Forms\Components\Component
-    {
-        return Forms\Components\Group::make([
-        ]);
-    }
 
     public static function getApplicationDetails(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
+                Forms\Components\Select::make('search_by')
+                ->options([
+                    'id' => "Applicaion ID",
+                    'applicant_lastname' => "First name",
+                    'applicant_firstname' => "Last name",
+                ])
+                ->live(),
                 Forms\Components\Select::make('customer_application_id')
                 ->searchable()
-                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::where([
-                    'applicant_firstname', 'like', "%{$search}%",
-                    'applicant_lastname', 'like', "%{$search}%",
-                    'id', 'like', "%{$search}%",
-                ])->limit(50)->pluck('id', 'id')->toArray())
+                ->getSearchResultsUsing(fn (string $search, Forms\Get $get): array => CustomerApplication::where($get('search_by'), 'like', "%{$search}%")->limit(50)->pluck($get('search_by'), 'id')->toArray())
                 ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)?->id)
                 ->required()
                 ->live()
