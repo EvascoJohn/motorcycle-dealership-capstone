@@ -36,13 +36,6 @@ class CustomerApplicationResource extends Resource
         return True;
     }
 
-    protected function getFormActions(): array
-    {
-        return [
-            $this->getCancelFormAction(),
-        ];
-    }
-
     public static function getUnitToBeFinanced(): Forms\Components\Component
     {
                 return Forms\Components\Group::make([
@@ -818,7 +811,15 @@ class CustomerApplicationResource extends Resource
                                                 CustomerApplicationResource::getStatementOfMonthlyIncome()
                                         ]),
                         ])
-                        ->columnSpan(6),   
+                        ->columnSpan(6)
+                        ->submitAction(new HtmlString(Blade::render(<<<BLADE
+                        <x-filament::button
+                            type="submit"
+                            size="sm"
+                        >
+                            Submit
+                        </x-filament::button>
+                    BLADE))),
         ]);
     }
 
