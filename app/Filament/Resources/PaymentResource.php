@@ -121,6 +121,7 @@ class PaymentResource extends Resource
     {
         return Forms\Components\Group::make([
                 Forms\Components\Select::make('search_by')
+                ->columnSpan(1)
                 ->options([
                     'id' => "Applicaion ID",
                     'applicant_lastname' => "Last name",
@@ -130,6 +131,7 @@ class PaymentResource extends Resource
                 ->live(),
                 Forms\Components\Select::make('customer_application_id')
                 ->searchable()
+                ->columnSpan(1)
                 ->getSearchResultsUsing(fn (string $search, Forms\Get $get): array => CustomerApplication::where($get('search_by'), 'like', "%{$search}%")->limit(50)->pluck($get('search_by'), 'id')->toArray())
                 ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)?->id)
                 ->required()
@@ -191,7 +193,8 @@ class PaymentResource extends Resource
                         }
                     }
                 ),
-        ]);
+        ])
+        ->columns(2);
     }
 
     public static function form(Form $form): Form
