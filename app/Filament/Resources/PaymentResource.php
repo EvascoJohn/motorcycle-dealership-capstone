@@ -125,7 +125,11 @@ class PaymentResource extends Resource
         return Forms\Components\Group::make([
                 Forms\Components\Select::make('customer_application_id')
                 ->searchable()
-                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::where('name', 'like', "%{$search}%")->limit(50)->pluck('id', 'id')->toArray())
+                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::where([
+                    'applicant_firstname', 'like', "%{$search}%",
+                    'applicant_lastname', 'like', "%{$search}%",
+                    'id', 'like', "%{$search}%",
+                ])->limit(50)->pluck('id', 'id')->toArray())
                 ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)?->id)
                 ->required()
                 ->live()
