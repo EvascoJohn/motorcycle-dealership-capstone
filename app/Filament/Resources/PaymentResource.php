@@ -126,13 +126,13 @@ class PaymentResource extends Resource
                 Forms\Components\Select::make('customer_application_id')
                 ->relationship(
                         name: 'customerApplication',
-                        titleAttribute: 'applicant_lastname',
+                        titleAttribute: 'id',
                         modifyQueryUsing: fn (Builder $query) => $query->where("application_status", "Active")
                                                                     ->orwhere("application_status", "Approved"),
                 )
                 ->label('For Applicant:')
                 ->preload()
-                ->searchable()
+                ->searchable(['id', 'applicant_firstname', 'applicant_lastname'])
                 ->required()
                 ->live()
                 ->afterStateUpdated(
