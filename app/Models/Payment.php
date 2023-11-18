@@ -98,10 +98,18 @@ class Payment extends Model
 
     public static function calculateDeductionsCashPayment(float $unitPrice, float $rate): float
     {
+        // Check if $rate is zero before performing the division
+        if ($rate == 0) {
+            // Handle the division by zero case, for example, return a default value or throw an exception
+            // In this example, I'm returning 0, but you may choose a different default value or handle it differently based on your requirements.
+            return 0;
+        }
+    
         $rate /= 100;
         $deduction = $unitPrice * $rate;
         return $deduction;
     }
+    
     public static function calculateAmountMonthlyPayment(float $unitPrice, float $downpayment, int $term, float $monthlyInterestRate): float
     {
         // Check if the monthly interest rate is 0
