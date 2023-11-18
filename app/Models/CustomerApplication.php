@@ -217,7 +217,7 @@ class CustomerApplication extends Model implements HasMedia
 
     public function hasDownPayment(): bool
     {
-        if($this->unit_ttl_dp == null || $this->unit_ttl_dp == 0){
+        if($this->unit_ttl_dp == null || $this->unit_ttl_dp <= 0.00){
             return false;
         }
         return true;
