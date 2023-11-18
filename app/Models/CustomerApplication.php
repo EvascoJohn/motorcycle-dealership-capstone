@@ -192,17 +192,19 @@ class CustomerApplication extends Model implements HasMedia
     }
 
 
-    public static function getSearchUnreleasedApplications(string $search): Builder
+    public static function getSearchApplicationsReadyForPayment(string $search): Builder
     {
         //returns a query builder for getting all the un-released applications.
         return static::query()
-                    ->where('release_status', ReleaseStatus::UN_RELEASED->value)
+                    ->where('release_status', ReleaseStatus::RELEASED->value)
+                    ->where('application_status', ApplicationStatus::APPROVED_STATUS->value)
                     ->where(function ($query) use ($search) {
                         $query->where('applicant_firstname', 'like', '%' . $search . '%')
                             ->orWhere('applicant_lastname', 'like', '%' . $search . '%')
                             ->orWhere('id', 'like', '%' . $search . '%');
                     });
     }
+    
 
     public function releasesApplication(array $data = null): array
     {
