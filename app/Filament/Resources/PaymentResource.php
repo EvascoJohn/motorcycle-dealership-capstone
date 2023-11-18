@@ -36,15 +36,15 @@ class PaymentResource extends Resource
             Forms\Components\Section::make("Customer Application's Information")
 
                     ->schema([
-                        Forms\Components\Placeholder::make('application_full_name')
+                        Forms\Components\TextInput::make('application_full_name')
                                 ->columnSpan(3)
                                 ->disabled()
-                                ->label('First name'),
-                        Forms\Components\Placeholder::make('application_unit')
+                                ->label('Full name'),
+                        Forms\Components\TextInput::make('application_unit')
                                 ->columnSpan(6)
                                 ->disabled()
                                 ->label('Unit'),
-                        Forms\Components\Placeholder::make('application_balance')
+                        Forms\Components\TextInput::make('application_balance')
                                 ->columnSpan(6)
                                 ->disabled()
                                 ->label('Balance'),

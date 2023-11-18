@@ -193,7 +193,6 @@ class CustomerApplication extends Model implements HasMedia
         static::addGlobalScope(new CustomerApplicationScope);
     }
 
-
     public static function getSearchApplicationsReadyForPayment(string $search): Builder
     {
         //returns a query builder for getting all the un-released applications.
