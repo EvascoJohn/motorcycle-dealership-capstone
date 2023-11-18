@@ -125,7 +125,7 @@ class PaymentResource extends Resource
                 ->searchable()
                 ->columnSpan(1)
                 ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsReadyForPayment($search)->get()->pluck("id", "applicant_full_name")->toArray())
-                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)?->applicant_full_name_with_id)
+                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)->applicant_full_name_with_iw)
                 ->required()
                 ->live()
                 ->afterStateUpdated(
