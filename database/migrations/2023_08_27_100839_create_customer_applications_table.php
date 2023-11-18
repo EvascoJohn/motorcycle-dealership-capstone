@@ -35,12 +35,12 @@ return new class extends Migration
             // Unit Information
             $table->foreignIdFor(UnitModel::class)->onDelete('set null');
             $table->foreignId('units_id')->onDelete('set null')->nullable();
-            $table->string('unit_term')->nullable();
-            $table->decimal('unit_monthly_amort', 10, 2)->nullable();
-            $table->decimal('unit_ttl_dp')->nullable();
-            $table->decimal('unit_srp', 10, 2)->nullable();
+            $table->integer('unit_term')->default(0.00);
+            $table->float('unit_monthly_amort', 10, 2)->default(0.00);
+            $table->float('unit_ttl_dp')->default(0.00);
+            $table->decimal('unit_srp', 10, 2)->default(0.00);
             $table->string('unit_type')->nullable();
-            $table->decimal('unit_amort_fin', 10, 2)->nullable();
+            $table->float('unit_amort_fin', 10, 2)->default(0.00);
             $table->string('unit_mode_of_payment')->nullable();
 
             //Applicant Information
