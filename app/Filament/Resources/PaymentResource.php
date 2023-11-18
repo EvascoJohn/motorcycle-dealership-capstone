@@ -36,18 +36,18 @@ class PaymentResource extends Resource
             Forms\Components\Section::make("Customer Application's Information")
 
                     ->schema([
-                        Forms\Components\TextInput::make('application_firstname')
+                        Forms\Components\Placeholder::make('application_full_name')
                                 ->columnSpan(3)
                                 ->disabled()
                                 ->label('First name'),
-                        Forms\Components\TextInput::make('application_lastname')
-                                ->columnSpan(3)
-                                ->disabled()
-                                ->label('Last name'),
-                        Forms\Components\TextInput::make('application_unit')
+                        Forms\Components\Placeholder::make('application_unit')
                                 ->columnSpan(6)
                                 ->disabled()
                                 ->label('Unit'),
+                        Forms\Components\Placeholder::make('application_balance')
+                                ->columnSpan(6)
+                                ->disabled()
+                                ->label('Balance'),
                         Forms\Components\TextInput::make('application_unit_price')
                                 ->columnSpan(6)
                                 ->disabled()
@@ -156,8 +156,8 @@ class PaymentResource extends Resource
                             $amort_fin = $application->unit_monthly_amort;
                             $set('due_date', $due_date);
                             $set('payment_amount', $amort_fin);
-                            $set('application_firstname', $application->applicant_firstname);
-                            $set('application_lastname', $application->applicant_lastname);
+                            $set('application_full_name', $application->applicant_full_name);
+                            $set('application_balance', 'maintenance mode');
                             $set('application_unit', $application->unitModel->model_name);
                             $set('application_unit_price', $application->unitModel->price);
                             
@@ -214,8 +214,8 @@ class PaymentResource extends Resource
                     Tables\Columns\TextColumn::make('id')
                             ->label('ID')
                             ->searchable(),
-                    Tables\Columns\TextColumn::make('customerApplication.applicant_firstname')
-                            ->label('First Name')
+                    Tables\Columns\TextColumn::make('customerApplication.applicant_full_name')
+                            ->label('Full name')
                             ->searchable(),
                     Tables\Columns\TextColumn::make('payment_amount')
                             ->label('Payment Amount')
