@@ -135,7 +135,7 @@ class PaymentResource extends Resource
                                 $application->unit_srp,
                                 $application->unit_ttl_dp,
                                 $application->unit_term,
-                                0, // monthly interest rate
+                                0.0, // monthly interest rate
                             );
                         }
                         else if($application->hasDownPayment() == false)//on going payment (Monthly payment)
