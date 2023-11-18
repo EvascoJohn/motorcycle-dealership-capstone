@@ -64,6 +64,8 @@ class CustomerApplication extends Model implements HasMedia
         'applicant_house',
         'applicant_valid_id',
         'applicant_telephone',
+        'applicant_fullname',
+        'applicant_fullname_with_id',
 
         //Applicant Employment
         'applicant_present_business_employer',
