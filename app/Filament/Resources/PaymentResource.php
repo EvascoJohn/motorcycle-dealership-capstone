@@ -129,7 +129,7 @@ class PaymentResource extends Resource
                     function($state, Forms\Set $set, ?Model $record){
                         $application = CustomerApplication::query()->where("id", $state)->first();
                         $payment_amount = 0;
-                        if($application->hasDownPayment() == false)//initial payment (Down payment)
+                        if($application->hasMonthlyPayment() == false)//initial payment (Down payment)
                         {
                             $payment_amount = Payment::calculateAmountMonthlyPayment(
                                 $application->unit_srp,
@@ -138,7 +138,7 @@ class PaymentResource extends Resource
                                 0.0, // monthly interest rate
                             );
                         }
-                        else if($application->hasDownPayment() == true)//on going payment (Monthly payment)
+                        else if($application->hasMonthlyPayment() == true)//on going payment (Monthly payment)
                         {
                             $payment_amount = Payment::calculatePayment(
                                 $application->unit_amort_fin, 
