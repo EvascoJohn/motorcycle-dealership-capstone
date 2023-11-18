@@ -115,7 +115,7 @@ class Payment extends Model
         if ($totalPayments == 0 || $monthlyInterestRate == 0) {
             // Handle the division by zero case, for example, return a default value or throw an exception
             // In this example, I'm returning 0, but you may choose a different default value or handle it differently based on your requirements.
-            return 0;
+            return $downpayment;
         }
     
         // Calculate the monthly payment using the formula
