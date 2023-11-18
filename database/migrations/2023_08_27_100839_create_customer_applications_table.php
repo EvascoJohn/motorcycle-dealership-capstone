@@ -57,9 +57,11 @@ return new class extends Migration
             $table->json('applicant_valid_id')->nullable();
             $table->string('applicant_telephone')->nullable();
             $table->string("applicant_fullname")
-                ->virtualAd('concat(applicant_firstname, \'\', applicant_lastname)');
+                ->storedAs('concat(applicant_firstname, \'\', applicant_lastname)')
+                ->index();
             $table->string("applicant_fullname_and_id")
-                ->virtualAs("concat(id, ' ', applicant_firstname, ' ', applicant_lastname)");
+                ->storedAsstoredAs("concat(id, ' ', applicant_firstname, ' ', applicant_lastname)")
+                ->index();
 
             //Applcant Employment
             $table->string('applicant_present_business_employer')->nullable();
