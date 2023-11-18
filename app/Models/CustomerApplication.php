@@ -215,9 +215,9 @@ class CustomerApplication extends Model implements HasMedia
                     ->where('released_status', ReleaseStatus::UN_RELEASED->value);
     }
 
-    public function hasDownPayment(): bool
+    public function hasMonthlyPayment(): bool
     {
-        if($this->unit_ttl_dp == null || $this->unit_ttl_dp <= 0.00){
+        if($this->unit_amort_fin == null || $this->unit_amort_fin <= 0.00){
             return false;
         }
         return true;
