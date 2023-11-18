@@ -145,6 +145,7 @@ class PaymentResource extends Resource
                                 0
                             );
                         }
+                        dd($payment_amount);
                         $set('payment_amount', $payment_amount);
                     }
                 ),
