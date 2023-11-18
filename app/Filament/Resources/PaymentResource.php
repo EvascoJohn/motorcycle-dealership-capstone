@@ -142,7 +142,7 @@ class PaymentResource extends Resource
                         {
                             $payment_amount = Payment::calculatePayment(
                                 $application->unit_amort_fin, 
-                                0
+                                0.0
                             );
                             dd($payment_amount);
                         }
