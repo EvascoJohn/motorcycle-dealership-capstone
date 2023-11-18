@@ -121,19 +121,10 @@ class PaymentResource extends Resource
     public static function getApplicationDetails(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-                Forms\Components\Select::make('search_by')
-                ->columnSpan(1)
-                ->options([
-                    'id' => "Applicaion ID",
-                    'applicant_lastname' => "Last name",
-                    'applicant_firstname' => "First name",
-                ])
-                
-                ->live(),
                 Forms\Components\Select::make('customer_application_id')
                 ->searchable()
                 ->columnSpan(1)
-                ->getSearchResultsUsing(fn (string $search, Forms\Get $get): array => CustomerApplication::where($get('search_by'), 'like', "%{$search}%")->limit(50)->pluck($get('search_by'), 'id')->toArray())
+                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getUnreleasedApplications($search)->get()->pluch('id', 'applicant_firstname'. "applicant_lastname")->toArray())
                 ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)?->id)
                 ->required()
                 ->live()

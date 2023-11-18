@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\ApplicationStatus;
 use App\Enums\ReleaseStatus;
 use App\Models\Scopes\CustomerApplicationScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -185,10 +186,22 @@ class CustomerApplication extends Model implements HasMedia
         'dependents'                => 'json',
     ];
 
-
     protected static function booted(): void
     {
         static::addGlobalScope(new CustomerApplicationScope);
+    }
+
+
+    public static function getSearchUnreleasedApplications(string $search): Builder
+    {
+        //returns a query builder for getting all the un-released applications.
+        return static::query()
+                    ->where('release_status', ReleaseStatus::UN_RELEASED->value)
+                    ->where(function ($query) use ($search) {
+                        $query->where('applicant_firstname', 'like', '%' . $search . '%')
+                            ->orWhere('applicant_lastname', 'like', '%' . $search . '%')
+                            ->orWhere('id', 'like', '%' . $search . '%');
+                    });
     }
 
     public function releasesApplication(array $data = null): array
