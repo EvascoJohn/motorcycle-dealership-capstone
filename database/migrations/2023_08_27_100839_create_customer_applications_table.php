@@ -56,6 +56,10 @@ return new class extends Migration
             $table->string('applicant_house')->nullable();
             $table->json('applicant_valid_id')->nullable();
             $table->string('applicant_telephone')->nullable();
+            $table->string("applicant_fullname")
+                ->virtualAd('concat(applicant_firstname, \'\', applicant_lastname)');
+            $table->string("applicant_fullname_and_id")
+                ->virtualAs("concat(id, ' ', applicant_firstname, ' ', applicant_lastname)");
 
             //Applcant Employment
             $table->string('applicant_present_business_employer')->nullable();
