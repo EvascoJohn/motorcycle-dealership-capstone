@@ -200,7 +200,6 @@ class CustomerApplication extends Model implements HasMedia
         // If the application is Released.
         // If the applicaton is approved.
         return static::query()
-                    ->where('release_status', ReleaseStatus::RELEASED->value)
                     ->where('application_status', ApplicationStatus::APPROVED_STATUS->value)
                     ->where(function ($query) use ($search) {
                         $query->where('applicant_firstname', 'like', '%' . $search . '%')
@@ -208,7 +207,21 @@ class CustomerApplication extends Model implements HasMedia
                             ->orWhere('id', 'like', '%' . $search . '%');
                     });
     }
-    
+
+    public static function getApplicationsReadyForRelease(): Builder
+    {
+        return static::query()
+                    ->where('application_status', ApplicationStatus::ACTIVE_STATUS->value)
+                    ->where('released_status', ReleaseStatus::UN_RELEASED->value);
+    }
+
+    public function hasDownPayment(): bool
+    {
+        if($this->unit_ttl_dp == null || $this->unit_ttl_dp == 0){
+            return false;
+        }
+        return true;
+    }
 
     public function releasesApplication(array $data = null): array
     {

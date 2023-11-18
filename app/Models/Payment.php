@@ -45,6 +45,93 @@ class Payment extends Model
         return array_values($monthlyTotals);
     }
 
+    public static function getPaymentStatus(string $customerApplicationDueDate): string
+    {
+        $due_date = $customerApplicationDueDate;
+        $today = Carbon::today();
+    
+        $delinquent = $today->copy()->addDays(30);
+    
+        $parsed_date = Carbon::createFromFormat(config('app.date_format'), $due_date);
+    
+        if ($today->lt($parsed_date)) {
+            // Payment is in advance
+            return "Advance";
+        } elseif ($today->eq($parsed_date)) {
+            // Payment is current
+            return "Current";
+        } elseif ($today->gt($parsed_date) && $today->lt($delinquent)) {
+            // Payment is overdue
+            return "Overdue";
+        } elseif ($today->gt($delinquent)) {
+            // Payment is delinquent
+            return "Delinquent";
+        } else {
+            return "Unknown";
+        }
+    }
+
+
+    // public static function calculateUnitDownpayment(float $unitPrice, float $rate, int $term, float $downPaymentPercentage): float
+    // {
+    //     // Calculate the down payment amount based on the percentage
+    //     $dp_amount = $downPaymentPercentage / 100 * $unitPrice;
+    
+    //     // Calculate the principal amount (unit price - down payment)
+    //     $principal = $unitPrice - $dp_amount;
+    
+    //     // Get the monthly interest rate (replace with your actual monthly interest rate)
+    //     $monthly_interest_rate = $rate / 100 / 12; // Convert annual rate to monthly and percentage to decimal
+    
+    //     // Calculate the number of payments (term of the installment in months)
+    //     $number_of_payments = $term;
+    
+    //     // Calculate the monthly payment using the loan payment formula
+    //     $monthly_payment = ($principal * $monthly_interest_rate) / (1 - pow(1 + $monthly_interest_rate, -$number_of_payments));
+    
+    //     // Round the monthly payment to 2 decimal places
+    //     $monthly_payment = round($monthly_payment, 2);
+    
+    //     // You can return the result or use it as needed
+    //     return $monthly_payment;
+    // }
+
+    public static function calculateDeductionsCashPayment(float $unitPrice, float $rate): float
+    {
+        $rate /= 100;
+        $deduction = $unitPrice * $rate;
+        return $deduction;
+    }
+
+    public static function calculateAmountMonthlyPayment(float $unitPrice, float $downpayment, int $term, float $monthlyInterestRate): float
+    {
+        // Calculate the present value of the loan (PV)
+        $presentValue = $unitPrice - $downpayment;
+    
+        // Calculate the total number of payments (n)
+        $totalPayments = $term * 12;
+    
+        // Calculate the monthly payment using the formula
+        $monthlyPayment = ($monthlyInterestRate * $presentValue) / (1 - pow(1 + $monthlyInterestRate, -$totalPayments));
+    
+        return $monthlyPayment;
+    }
+
+    
+    public static function calculateCashPayment(float $unitPrice, float $rate): float
+    {
+
+        $discountedPrice = $unitPrice - static::calculateDeductionsCashPayment($unitPrice, $rate);
+        return $discountedPrice;
+    }
+
+    public static function calculatePayment(float $amount, float $rate): float
+    {
+
+        $discountedPrice = $amount - static::calculateDeductionsCashPayment($amount, $rate);
+        return $discountedPrice;
+    }
+
 
     public function customerApplication():BelongsTo{
         return $this->belongsTo(CustomerApplication::class);

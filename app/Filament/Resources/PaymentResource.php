@@ -86,15 +86,7 @@ class PaymentResource extends Resource
                         ->live()
                         ->columnSpan(2)
                         ->required()
-                        ->readOnly(function (Forms\Get $get):bool{
-                            $dp = CustomerApplication::query()
-                                ->where('id', $get('customer_application_id'))
-                                ->first();
-                            if($dp != null){
-                                return false;
-                            }
-                            return true;
-                        }),
+                        ->readOnly(),
                 Forms\Components\Select::make('payment_status')
                         ->live()
                         ->options([
@@ -129,60 +121,31 @@ class PaymentResource extends Resource
                 ->required()
                 ->live()
                 ->afterStateUpdated(
+                    // 'unit_monthly_amort',
+                    // 'unit_ttl_dp',
+                    // 'unit_srp',
+                    // 'unit_type',
+                    // 'unit_amort_fin',
                     function($state, Forms\Set $set, ?Model $record){
-                        $application = CustomerApplication::query()
-                                ->where("id", $state)
-                                ->first();
-                        $set('due_date', "");
-                        $set('payment_amount', "");
-                        $set('application_firstname',  "");
-                        $set('customer_application_group',  "");
-                        $set('application_unit',  "");
-                        $set('application_unit',  "");
-                        $set('application_unit_price',  "");
-                        if($application != null){
-                            if($application->application_status == ApplicationStatus::APPROVED_STATUS ->value
-                                    && $application->release_status == ReleaseStatus::UN_RELEASED->value)
-                            {
-                                dd("Down Payment");
-                            }else if($application->application_status == ApplicationStatus::ACTIVE_STATUS->value){
-                                // dd("Amort. Payment");
-                                $state->payment_amount = $application->unit_monthly_amort;
-                                dd($record->payment_amount);
-                            }
-                            $due_date = $application->due_date;
-                            $today = Carbon::today();
-                            
-                            $amort_fin = $application->unit_monthly_amort;
-                            $set('due_date', $due_date);
-                            $set('payment_amount', $amort_fin);
-                            $set('application_full_name', $application->applicant_full_name);
-                            $set('application_balance', 'maintenance mode');
-                            $set('application_unit', $application->unitModel->model_name);
-                            $set('application_unit_price', $application->unitModel->price);
-                            
-                            $delinquent = $today->copy()->addDays(30);
-                            
-                            $parsed_date = Carbon::createFromFormat(config('app.date_format'), $due_date);
-                            
-                            $is_advance = $today->lt($parsed_date);
-                            $is_current = $today->eq($parsed_date);
-                            $is_overdue = $today->gt($parsed_date) && $today->lt($delinquent);
-                            $is_delinquent = $today->gt($delinquent);
-    
-                            if($today->lessThan($parsed_date)){
-                                $set('payment_status', 'advance');
-                            }
-                            elseif($today->equalTo($parsed_date)){
-                                $set('payment_status', 'current');
-                            }
-                            elseif($today->greaterThan($parsed_date) && $today->lessThan($delinquent)){
-                                $set('payment_status', 'overdue');
-                            }
-                            elseif($today->greaterThan($delinquent)){
-                                $set('payment_status', 'delinquent');
-                            }
+                        $application = CustomerApplication::query()->where("id", $state)->first();
+                        $payment_amount = 0;
+                        if($application->hasDownPayment() == false)//initial payment (Down payment)
+                        {
+                            $payment_amount = Payment::calculateAmountMonthlyPayment(
+                                $application->unit_srp,
+                                $application->unit_ttl_dp,
+                                $application->unit_term,
+                                0, // monthly interest rate
+                            );
                         }
+                        else if($application->hasDownPayment() == false)//on going payment (Monthly payment)
+                        {
+                            $payment_amount = Payment::calculatePayment(
+                                $application->unit_amort_fin, 
+                                0
+                            );
+                        }
+                        $set('payment_amount', $payment_amount);
                     }
                 ),
         ])
