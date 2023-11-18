@@ -138,7 +138,7 @@ class PaymentResource extends Resource
                                 0.0, // monthly interest rate
                             );
                         }
-                        else if($application->hasDownPayment() == false)//on going payment (Monthly payment)
+                        else if($application->hasDownPayment() == true)//on going payment (Monthly payment)
                         {
                             $payment_amount = Payment::calculatePayment(
                                 $application->unit_amort_fin, 
