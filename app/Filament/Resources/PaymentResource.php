@@ -144,8 +144,8 @@ class PaymentResource extends Resource
                                 $application->unit_amort_fin, 
                                 0
                             );
+                            dd($payment_amount);
                         }
-                        dd($payment_amount);
                         $set('payment_amount', $payment_amount);
                     }
                 ),
