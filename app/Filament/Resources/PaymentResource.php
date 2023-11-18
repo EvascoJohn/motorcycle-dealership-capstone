@@ -124,8 +124,8 @@ class PaymentResource extends Resource
                 Forms\Components\Select::make('customer_application_id')
                 ->searchable()
                 ->columnSpan(1)
-                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsReadyForPayment($search)->get()->pluck("applicant_fullname")->toArray())
-                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)->applicant_fullname)
+                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsReadyForPayment($search)->get()->pluck("id", "applicant_fullname")->toArray())
+                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)?->applicant_fullname)
                 ->required()
                 ->live()
                 ->afterStateUpdated(
