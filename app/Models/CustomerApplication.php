@@ -201,7 +201,7 @@ class CustomerApplication extends Model implements HasMedia
         // If the application is Released.
         // If the applicaton is approved.
         return static::query()
-                    ->where('release_status', ReleaseStatus::UN_RELEASED->value)
+                    ->where('release_status', ReleaseStatus::RELEASED->value)
                     ->where('application_status', ApplicationStatus::APPROVED_STATUS->value)
                     ->where(function ($query) use ($search) {
                         $query->where('applicant_firstname', 'like', '%' . $search . '%')
