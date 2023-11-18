@@ -124,8 +124,8 @@ class PaymentResource extends Resource
                 Forms\Components\Select::make('customer_application_id')
                 ->searchable()
                 ->columnSpan(1)
-                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsReadyForPayment($search)->get()->pluck("id", "applicant_full_name")->toArray())
-                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)->applicant_full_name)
+                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsReadyForPayment($search)->get()->pluck("applicant_full_name", "id")->toArray())
+                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)->id)
                 ->required()
                 ->live()
                 ->afterStateUpdated(
@@ -133,7 +133,7 @@ class PaymentResource extends Resource
                         $application = CustomerApplication::query()
                                 ->where("id", $state)
                                 ->first();
-                        dd($state);
+                        dd($sate);
                         $set('due_date', "");
                         $set('payment_amount', "");
                         $set('application_firstname',  "");
