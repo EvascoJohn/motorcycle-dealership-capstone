@@ -16,10 +16,10 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_application_id',  //
-        'payment_status',           //p 
-        'payment_type',             //
-        'payment_amount',           // 2000.00
+        'customer_application_id',
+        'payment_status',  
+        'payment_type',
+        'payment_amount',
     ];
 
     protected static function booted(): void
@@ -71,40 +71,13 @@ class Payment extends Model
         }
     }
 
-
-    // public static function calculateUnitDownpayment(float $unitPrice, float $rate, int $term, float $downPaymentPercentage): float
-    // {
-    //     // Calculate the down payment amount based on the percentage
-    //     $dp_amount = $downPaymentPercentage / 100 * $unitPrice;
-    
-    //     // Calculate the principal amount (unit price - down payment)
-    //     $principal = $unitPrice - $dp_amount;
-    
-    //     // Get the monthly interest rate (replace with your actual monthly interest rate)
-    //     $monthly_interest_rate = $rate / 100 / 12; // Convert annual rate to monthly and percentage to decimal
-    
-    //     // Calculate the number of payments (term of the installment in months)
-    //     $number_of_payments = $term;
-    
-    //     // Calculate the monthly payment using the loan payment formula
-    //     $monthly_payment = ($principal * $monthly_interest_rate) / (1 - pow(1 + $monthly_interest_rate, -$number_of_payments));
-    
-    //     // Round the monthly payment to 2 decimal places
-    //     $monthly_payment = round($monthly_payment, 2);
-    
-    //     // You can return the result or use it as needed
-    //     return $monthly_payment;
-    // }
-
     public static function calculateDeductionsCashPayment(float $unitPrice, float $rate): float
     {
         // Check if $rate is zero before performing the division
         if ($rate == 0) {
             // Handle the division by zero case, for example, return a default value or throw an exception
-            // In this example, I'm returning 0, but you may choose a different default value or handle it differently based on your requirements.
             return 0;
         }
-    
         $rate /= 100;
         $deduction = $unitPrice * $rate;
         return $deduction;
@@ -126,18 +99,15 @@ class Payment extends Model
 
         return $monthlyPayment;
     }
-
     
     public static function calculateCashPayment(float $unitPrice, float $rate): float
     {
-
         $discountedPrice = $unitPrice - static::calculateDeductionsCashPayment($unitPrice, $rate);
         return $discountedPrice;
     }
 
     public static function calculatePayment(float $amount, float $rate): float
     {
-
         $discountedPrice = $amount - static::calculateDeductionsCashPayment($amount, $rate);
         return $discountedPrice;
     }
