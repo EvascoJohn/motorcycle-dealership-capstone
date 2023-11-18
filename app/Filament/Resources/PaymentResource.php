@@ -66,7 +66,7 @@ class PaymentResource extends Resource
                             ->where('id', $get('customer_application_id'))
                             ->first();
                         if($dp != null){
-                            if($dp->hasDownPayment() == false){
+                            if($dp->hasMonthlyPayment() == false){
                                 return "Down Payment";
                             }
                             return "Monthly Payment";
