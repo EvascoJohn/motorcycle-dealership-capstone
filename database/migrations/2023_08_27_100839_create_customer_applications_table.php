@@ -56,8 +56,7 @@ return new class extends Migration
             $table->string('applicant_house')->nullable();
             $table->json('applicant_valid_id')->nullable();
             $table->string('applicant_telephone')->nullable();
-            $table->virtualAs("applicant_firstname applicant_lastname)", "full_name");
-            $table->virtualAs("id / applicant_firstname applicant_lastname)", "full_name_with_id");
+            $table->string("applicant_full_name")->virtualAs("applicant_firstname applicant_lastname)");
 
             //Applcant Employment
             $table->string('applicant_present_business_employer')->nullable();
