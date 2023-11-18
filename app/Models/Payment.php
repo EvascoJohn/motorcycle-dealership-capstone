@@ -102,21 +102,19 @@ class Payment extends Model
         $deduction = $unitPrice * $rate;
         return $deduction;
     }
-
     public static function calculateAmountMonthlyPayment(float $unitPrice, float $downpayment, int $term, float $monthlyInterestRate): float
     {
+        // Check if the monthly interest rate is 0
+        if ($monthlyInterestRate == 0) {
+            // If there is no interest, return the total amount divided by the total number of payments
+            return ($unitPrice - $downpayment) / ($term * 12);
+        }
+    
         // Calculate the present value of the loan (PV)
         $presentValue = $unitPrice - $downpayment;
     
         // Calculate the total number of payments (n)
         $totalPayments = $term * 12;
-    
-        // Check if the denominator is zero before performing the division
-        if ($totalPayments == 0 || $monthlyInterestRate == 0) {
-            // Handle the division by zero case, for example, return a default value or throw an exception
-            // In this example, I'm returning 0, but you may choose a different default value or handle it differently based on your requirements.
-            return $downpayment;
-        }
     
         // Calculate the monthly payment using the formula
         $monthlyPayment = ($monthlyInterestRate * $presentValue) / (1 - pow(1 + $monthlyInterestRate, -$totalPayments));
