@@ -14,8 +14,6 @@ class CreateCustomerApplication extends CreateRecord
     protected function getFormActions(): array
     {
         return [
-            $this->getCancelFormAction()
-            ->requiresConfirmation(),
         ];
     }
 
