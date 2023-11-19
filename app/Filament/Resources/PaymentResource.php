@@ -48,6 +48,10 @@ class PaymentResource extends Resource
                                 ->columnSpan(6)
                                 ->disabled()
                                 ->label('Balance'),
+                        Forms\Components\TextInput::make('est_monthly_payment')
+                                ->columnSpan(6)
+                                ->disabled()
+                                ->label('Estimated monthly payment'),
                         Forms\Components\TextInput::make('application_unit_price')
                                 ->columnSpan(6)
                                 ->disabled()
@@ -109,34 +113,24 @@ class PaymentResource extends Resource
         ->columns(6);
     }
 
-
     public static function getApplicationDetails(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
                 Forms\Components\Select::make('customer_application_id')
                 ->searchable()
                 ->columnSpan(1)
-                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsReadyForPayment($search)->get()->pluck("applicant_full_name", "id")->toArray())
+                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsReadyForPayment($search)
+                                                                                    ->get()->pluck("applicant_full_name", "id")->toArray())
                 ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)->id)
                 ->required()
                 ->live()
                 ->afterStateUpdated(
-                    // 'unit_monthly_amort',
-                    // 'unit_ttl_dp',
-                    // 'unit_srp',
-                    // 'unit_type',
-                    // 'unit_amort_fin',
-                    function($state, Forms\Set $set, ?Model $record){
+                    function($state, Forms\Set $set){
                         $application = CustomerApplication::query()->where("id", $state)->first();
                         $payment_amount = 0;
                         if($application->hasMonthlyPayment() == false)//initial payment (Down payment)
                         {
-                            $payment_amount = Payment::calculateAmountMonthlyPayment(
-                                $application->unit_srp,
-                                $application->unit_ttl_dp,
-                                $application->unit_term,
-                                0.0, // monthly interest rate
-                            );
+                            $payment_amount = $application->unit_ttl_dp;
                         }
                         else if($application->hasMonthlyPayment() == true)//on going payment (Monthly payment)
                         {
@@ -144,7 +138,6 @@ class PaymentResource extends Resource
                                 $application->unit_amort_fin, 
                                 0.0
                             );
-                            dd($payment_amount);
                         }
                         $set('payment_amount', $payment_amount);
                     }
@@ -209,9 +202,6 @@ class PaymentResource extends Resource
                 }), 
             ])
             ->bulkActions([
-                // Tables\Actions\BulkActionGroup::make([
-                //     Tables\Actions\DeleteBulkAction::make(),
-                // ]),
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make()->requiresConfirmation(),
