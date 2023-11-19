@@ -13,7 +13,8 @@ class CreateCustomerApplication extends CreateRecord
     protected function getFormActions(): array
     {
         return [
-            $this->getCancelFormAction(),
+            $this->getCancelFormAction()
+                ->requiresConfirmation(),
         ];
     }
     protected static string $resource = CustomerApplicationResource::class;
