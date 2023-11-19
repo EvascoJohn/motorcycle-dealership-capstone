@@ -93,6 +93,12 @@ class CustomerApplicationResource extends Resource
                                                 $set('unit_monthly_amort_fin', $unit_monthly_amort_fin);
                                         }
                                 ),
+                            Forms\Components\TextInput::make('unit_down_payment')
+                                ->default(7800.00)
+                                ->columnSpan(2)
+                                ->readOnly()
+                                ->required(true)
+                                ->label('Down payment'),
                             Forms\Components\TextInput::make('unit_monthly_amort_fin')
                                     ->columnSpan(2)
                                     ->readOnly()
