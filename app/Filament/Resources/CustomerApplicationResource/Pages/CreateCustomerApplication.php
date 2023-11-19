@@ -21,9 +21,9 @@ class CreateCustomerApplication extends CreateRecord
     protected function getCancelFormAction(): Action
     {
         return Action::make('cancel')
+            ->requiresConfirmation()
             ->label(__('filament-panels::resources/pages/create-record.form.actions.cancel.label'))
             ->url($this->previousUrl ?? static::getResource()::getUrl())
-            ->requiresConfirmation(true)
             ->color('gray');
     }
 
