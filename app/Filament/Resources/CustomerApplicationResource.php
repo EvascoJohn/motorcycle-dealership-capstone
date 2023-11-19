@@ -70,6 +70,7 @@ class CustomerApplicationResource extends Resource
                                     ),
                             Forms\Components\Select::make('unit_term')
                                     ->columnSpan(2)
+                                    ->live()
                                     ->label("Term/Months")
                                     ->default(36)
                                     ->options([
