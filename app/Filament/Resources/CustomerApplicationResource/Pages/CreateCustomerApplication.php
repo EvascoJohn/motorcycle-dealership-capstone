@@ -22,10 +22,10 @@ class CreateCustomerApplication extends CreateRecord
     protected function getCancelCustomFormAction(): Action
     {
         return Action::make('cancel')
-            ->requiresConfirmation()
             ->label(__('filament-panels::resources/pages/create-record.form.actions.cancel.label'))
             ->url($this->previousUrl ?? static::getResource()::getUrl())
-            ->color('gray');
+            ->color('gray')
+            ->requiresConfirmation();
     }
 
     protected static string $resource = CustomerApplicationResource::class;
