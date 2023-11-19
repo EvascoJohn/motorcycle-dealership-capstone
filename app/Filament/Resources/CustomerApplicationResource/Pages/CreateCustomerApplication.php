@@ -4,6 +4,7 @@ namespace App\Filament\Resources\CustomerApplicationResource\Pages;
 
 use App\Filament\Resources\CustomerApplicationResource;
 use Filament\Actions;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,10 +14,19 @@ class CreateCustomerApplication extends CreateRecord
     protected function getFormActions(): array
     {
         return [
-            $this->getCancelFormAction()
-                ->requiresConfirmation(),
+            $this->getCancelFormAction(),
         ];
     }
+
+    protected function getCancelFormAction(): Action
+    {
+        return Action::make('cancel')
+            ->label(__('filament-panels::resources/pages/create-record.form.actions.cancel.label'))
+            ->url($this->previousUrl ?? static::getResource()::getUrl())
+            ->requiresConfirmation(true)
+            ->color('gray');
+    }
+
     protected static string $resource = CustomerApplicationResource::class;
 
     protected function mutateFormDataBeforeCreate(array $data): array
