@@ -85,7 +85,7 @@ class CustomerApplicationResource extends Resource
                                                 $unit_model = Models\UnitModel::find($get("unit_model_id"));
                                                 $unit_monthly_amort_fin = Models\Payment::calculateAmountMonthlyPayment(
                                                     $unit_model->price,
-                                                    $unit_model->dp,
+                                                    7800.00,
                                                     $get('unit_term'),
                                                     0.0,
                                                 );
