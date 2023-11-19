@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\CustomerApplicationResource\Pages;
 
 use App\Filament\Resources\CustomerApplicationResource;
+use App\Models\CustomerApplication;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
@@ -14,7 +15,10 @@ class CreateCustomerApplication extends CreateRecord
     protected function getFormActions(): array
     {
         return [
-            $this->getCancelCustomFormAction()
+            $this->getCancelCustomFormAction(),
+            Action::make('delete')
+                ->action(fn (CustomerApplication $record) => $record->delete())
+                ->requiresConfirmation()
         ];
     }
 
@@ -27,6 +31,8 @@ class CreateCustomerApplication extends CreateRecord
             ->color('gray')
             ->requiresConfirmation();
     }
+
+    
 
     protected static string $resource = CustomerApplicationResource::class;
 
