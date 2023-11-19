@@ -40,44 +40,82 @@ class CustomerApplicationResource extends Resource
 
     public static function getUnitToBeFinanced(): Forms\Components\Component
     {
-                return Forms\Components\Group::make([
-                        Forms\Components\Fieldset::make("Unit to be Financed")
-                        ->columns(4)
-                        ->columnSpan(2)
-                        ->schema([
-                                Forms\Components\Select::make('unit_model_id')
-                                        ->columnSpan(2)
-                                        ->label('Unit Model')
-                                        ->relationship(
-                                                        'unitModel',
-                                                        'model_name'
-                                                        )
-                                        ->searchable(['model_name', 'id'])
-                                        ->preload()
-                                        ->live()
-                                        ->afterStateUpdated(
-                                                function(Forms\Get $get, Forms\Set $set){
-                                                        $unit_price = Models\UnitModel::find($get("unit_model_id"))->price;
-                                                        $set('unit_srp', $unit_price);
-                                                }
-                                        ),
-                                Forms\Components\Select::make('preffered_unit_status')
-                                        ->label("Preffered unit status")
-                                        ->options(Enums\UnitStatus::class),
-                                Forms\Components\Group::make()
-                                        ->columnSpan(4)
-                                        ->columns(2)
-                                        ->live()
-                                        ->disabled(fn (Forms\Get $get): bool => ! $get('unit_model_id'))
-                                        ->schema([
-                                                Forms\Components\TextInput::make('unit_srp')
-                                                        ->columnSpan(1)
-                                                        ->required(true)
-                                                        ->label('Selling Retail Price:')
-                                                        ->numeric(),
-                                ]),
-                        ]),
-                ]);
+            return Forms\Components\Group::make([
+                    Forms\Components\Fieldset::make("Unit to be Financed")
+                    ->columns(4)
+                    ->columnSpan(2)
+                    ->schema([
+                            Forms\Components\Select::make('unit_model_id')
+                                    ->columnSpan(2)
+                                    ->label('Unit Model')
+                                    ->relationship(
+                                                    'unitModel',
+                                                    'model_name'
+                                                    )
+                                    ->searchable(['model_name', 'id'])
+                                    ->preload()
+                                    ->live()
+                                    ->afterStateUpdated(
+                                            function(Forms\Get $get, Forms\Set $set){
+                                                    $unit_model = Models\UnitModel::find($get("unit_model_id"));
+                                                    $unit_monthly_amort_fin = Models\Payment::calculateAmountMonthlyPayment(
+                                                        $unit_model->price,
+                                                        $unit_model->dp,
+                                                        $get('unit_term'),
+                                                        0.0,
+                                                    );
+                                                    $set('unit_srp', $unit_model->price);
+                                                    $set('unit_monthly_amort_fin', $unit_monthly_amort_fin);
+                                            }
+                                    ),
+                            Forms\Components\Select::make('unit_term')
+                                    ->columnSpan(2)
+                                    ->label("Term/Months")
+                                    ->default(36)
+                                    ->options([
+                                        36 => 'Thirty six (36)',
+                                        30 => 'Thirty (30)',
+                                        24 => 'Twenty four (24)',
+                                        18 => 'Eighteen (18)',
+                                        12 => 'Twelve (12)',
+                                    ])
+                                    ->afterStateUpdated(
+                                        function(Forms\Get $get, Forms\Set $set){
+                                                $unit_model = Models\UnitModel::find($get("unit_model_id"));
+                                                $unit_monthly_amort_fin = Models\Payment::calculateAmountMonthlyPayment(
+                                                    $unit_model->price,
+                                                    $unit_model->dp,
+                                                    $get('unit_term'),
+                                                    0.0,
+                                                );
+                                                $set('unit_srp', $unit_model->price);
+                                                $set('unit_monthly_amort_fin', $unit_monthly_amort_fin);
+                                        }
+                                ),
+                            Forms\Components\TextInput::make('unit_monthly_amort_fin')
+                                    ->columnSpan(2)
+                                    ->readOnly()
+                                    ->required(true)
+                                    ->label('Monthly amortization'),
+                            Forms\Components\Select::make('preffered_unit_status')
+                                    ->columnSpan(2)
+                                    ->label("Preffered unit status")
+                                    ->options(Enums\UnitStatus::class),
+                            Forms\Components\Group::make()
+                                    ->columnSpan(4)
+                                    ->columns(2)
+                                    ->live()
+                                    ->disabled(fn (Forms\Get $get): bool => ! $get('unit_model_id'))
+                                    ->schema([
+                                            Forms\Components\TextInput::make('unit_srp')
+                                                    ->columnSpan(2)
+                                                    ->readOnly()
+                                                    ->required(true)
+                                                    ->label('Selling Retail Price:')
+                            
+                                    ]),
+                    ]),
+            ]);
     }
 
     public static function getCoOwnerInformation(): Forms\Components\Component
