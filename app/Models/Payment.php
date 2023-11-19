@@ -17,9 +17,16 @@ class Payment extends Model
 
     protected $fillable = [
         'customer_application_id',
-        'payment_status',  
+        'payment_status',
         'payment_type',
+        'payment_made',
+        'advance',
+        'discount',
+        'monthly_interest',
+        'dp_amount',
+        'monthly_payment',
         'payment_amount',
+        'change',
     ];
 
     protected static function booted(): void
