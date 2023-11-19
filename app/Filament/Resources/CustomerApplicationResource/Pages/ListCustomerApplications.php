@@ -14,8 +14,7 @@ class ListCustomerApplications extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()
-            ->requiresConfirmation(),
+            Actions\CreateAction::make(),
         ];
     }
 

@@ -14,13 +14,12 @@ class CreateCustomerApplication extends CreateRecord
     protected function getFormActions(): array
     {
         return [
-            $this->getCancelFormAction()
-            ->modalCancelAction()
-            ->requiresConfirmation(),
+            $this->getCancelCustomFormAction()
         ];
     }
 
-    protected function getCancelFormAction(): Action
+
+    protected function getCancelCustomFormAction(): Action
     {
         return Action::make('cancel')
             ->requiresConfirmation()
