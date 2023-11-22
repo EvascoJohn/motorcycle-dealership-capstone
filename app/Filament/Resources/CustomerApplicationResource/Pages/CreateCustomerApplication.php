@@ -4,6 +4,7 @@ namespace App\Filament\Resources\CustomerApplicationResource\Pages;
 
 use App\Filament\Resources\CustomerApplicationResource;
 use App\Models\CustomerApplication;
+use App\Models\CustomerPaymentAccount;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
@@ -19,17 +20,14 @@ class CreateCustomerApplication extends CreateRecord
         ];
     }
 
-
     protected function getCancelCustomFormAction(): Action
     {
-        return Action::make('go_back')
+        return Action::make('cancel')
             ->label(__('filament-panels::resources/pages/create-record.form.actions.cancel.label'))
             ->url($this->previousUrl ?? static::getResource()::getUrl())
             ->color('gray')
             ->requiresConfirmation();
     }
-
-    
 
     protected static string $resource = CustomerApplicationResource::class;
 

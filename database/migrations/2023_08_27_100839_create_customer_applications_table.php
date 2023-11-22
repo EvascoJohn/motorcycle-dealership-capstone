@@ -19,7 +19,12 @@ return new class extends Migration
         Schema::create('customer_applications', function (Blueprint $table) {
 
             $table->id();
-            $table->string("due_date")->nullable();
+            $table->string("due_date")->nullable(); // account?
+
+            // Account ID
+            $table->foreignId('account_id')->nullable();
+
+            // Application related information
             $table->enum('application_status', ApplicationStatus::values())->default(ApplicationStatus::PENDING_STATUS);
             $table->text('reject_note')->default(null)->nullable();
             $table->text('resubmission_note')->default(null)->nullable();
@@ -34,14 +39,6 @@ return new class extends Migration
 
             // Unit Information
             $table->foreignIdFor(UnitModel::class)->onDelete('set null');
-            $table->foreignId('units_id')->onDelete('set null')->nullable();
-            $table->integer('unit_term')->default(0.00);
-            $table->float('unit_monthly_amort', 10, 2)->default(0.00);
-            $table->float('unit_ttl_dp')->default(0.00);
-            $table->decimal('unit_srp', 10, 2)->default(0.00);
-            $table->string('unit_type')->nullable();
-            $table->float('unit_amort_fin', 10, 2)->default(0.00);
-            $table->string('unit_mode_of_payment')->nullable();
 
             //Applicant Information
             $table->string('applicant_firstname')->nullable();

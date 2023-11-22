@@ -31,6 +31,7 @@ class CustomerApplication extends Model implements HasMedia
         'release_status',
         
         'preffered_unit_status',
+        'plan',
         'assumed_by_id',
 
         //mutate data here
@@ -49,6 +50,8 @@ class CustomerApplication extends Model implements HasMedia
         'unit_amort_fin',
         'unit_mode_of_payment',
         'due_date',
+
+        "account_id",
 
         //Applicant Information
         'applicant_firstname',
@@ -193,6 +196,24 @@ class CustomerApplication extends Model implements HasMedia
         static::addGlobalScope(new CustomerApplicationScope);
     }
 
+    public function assignAccount(): void
+    {
+        // //assigns an account to the customer application.
+        // $new_account = CustomerPaymentAccount::create(
+        //     $this->unit_srp,                            // remaining_balance
+        //     $this->plan,                                // plan_type
+        //     0,                                          // monthly_interest
+        //     4000,                                     // monthly_payment
+        //     $this->term,                                // down_payment
+        //                                                    // term
+        //     ,                            // status
+        //     null,                                       // payment_status
+        //                                                 // original_amount
+        //                                                 // init_release_id
+        // );
+        // $this->acount_id = $new_account->id;
+    }
+
     public static function getSearchApplicationsReadyForPayment(string $search): Builder
     {
         //returns a query builder for getting all the un-released applications.
@@ -201,6 +222,21 @@ class CustomerApplication extends Model implements HasMedia
         // If the applicaton is approved.
         return static::query()
                     ->where('application_status', ApplicationStatus::APPROVED_STATUS->value)
+                    ->where(function ($query) use ($search) {
+                        $query->where('applicant_firstname', 'like', '%' . $search . '%')
+                            ->orWhere('applicant_lastname', 'like', '%' . $search . '%')
+                            ->orWhere('id', 'like', '%' . $search . '%');
+                    });
+    }
+
+    public static function getSearchApplicationsWithAccounts(string $search): Builder
+    {
+        //returns a query builder for getting all the un-released applications.
+        //Criteria:
+        // If the application is Released.
+        // If the applicaton is approved.
+        return static::query()
+                    ->whereNotNull('account_id')
                     ->where(function ($query) use ($search) {
                         $query->where('applicant_firstname', 'like', '%' . $search . '%')
                             ->orWhere('applicant_lastname', 'like', '%' . $search . '%')
@@ -264,7 +300,8 @@ class CustomerApplication extends Model implements HasMedia
 
     public function getStatus(): ApplicationStatus|null
     {
-        if($this->application_status != null){
+        if($this->application_status != null)
+        {
 
             return $this->application_status;
         }
@@ -279,11 +316,13 @@ class CustomerApplication extends Model implements HasMedia
         $unit->save();
     }
     
-    public function branches():BelongsTo{
+    public function branches():BelongsTo
+    {
         return $this->belongsTo(Branch::class, 'branch_id');
     }
 
-    public function customerApplication(): BelongsTo{
+    public function customerApplication(): BelongsTo
+    {
         return $this->belongsTo(CustomerApplication::class,'assumed_by_id');
     }
 
@@ -297,16 +336,24 @@ class CustomerApplication extends Model implements HasMedia
         return $this->payments()->sum();
     }
 
-    public function payments():HasMany{
+    public function payments():HasMany
+    {
         return $this->hasMany(Payment::class);
     }
 
-    public function unitModel():BelongsTo{
+    public function unitModel():BelongsTo
+    {
         return $this->belongsTo(UnitModel::class);
     }
 
-    public function units():BelongsTo{
+    public function units():BelongsTo
+    {
         return $this->belongsTo(Unit::class, 'units_id');
+    }
+
+    public function customerPaymentAccount(): HasOne
+    {
+        return $this->hasOne(CustomerApplication::class, 'account_id');
     }
 
 }

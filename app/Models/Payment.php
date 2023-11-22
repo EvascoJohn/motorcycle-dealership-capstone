@@ -10,23 +10,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class Payment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'customer_application_id',
-        'payment_status',
-        'payment_type',
-        'payment_made',
-        'advance',
-        'discount',
-        'monthly_interest',
-        'dp_amount',
-        'monthly_payment',
-        'payment_amount',
-        'change',
+        'account_id',               //[bit-int] (id of the account it belongs to).
+        'payment_status',           //[advance, current, overdue, delinquent].
+        'payment_type',             //[walk-in, online].
+        'payment_made',             //[cash, dp, monthly].
+        'advance',                  //[true, false].
+        'discount',                 //[int].
+        'term',                     //[int].
+        'monthly_interest',         //[float].
+        'dp_amount',                //[float].
+        'rebate',                   //[float].
+        'monthly_payment',          //[float].
+        'payment_amount',           //[float] (monthly_payment - discount - rebate).
+        'amount_paid',              //[float] (amount paid by the customer).
+        'change',                   //[float] (change if the amount exceeds the payment_amount).
     ];
 
     protected static function booted(): void

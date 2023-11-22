@@ -7,6 +7,7 @@ use App\Enums\ReleaseStatus;
 use App\Filament\Resources\PaymentResource\Pages;
 use App\Models\CustomerApplication;
 use App\Models\Unit;
+use App\Models\CustomerPaymentAccount;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Blade;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -116,17 +117,17 @@ class PaymentResource extends Resource
     public static function getApplicationDetails(): Forms\Components\Component
     {
         return Forms\Components\Group::make([
-                Forms\Components\Select::make('customer_application_id')
+                Forms\Components\Select::make('account_id')
                 ->searchable()
                 ->columnSpan(1)
-                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsReadyForPayment($search)
-                                                                                    ->get()->pluck("applicant_full_name", "id")->toArray())
-                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)->id)
+                ->getSearchResultsUsing(fn (string $search): array => CustomerApplication::getSearchApplicationsWithAccounts($search)
+                                                                                    ->get()->pluck("applicant_full_name", "account_id")->toArray())
+                ->getOptionLabelUsing(fn ($value): ?string => CustomerApplication::find($value)->account_id)
                 ->required()
                 ->live()
                 ->afterStateUpdated(
                     function($state, Forms\Set $set){
-                        $application = CustomerApplication::query()->where("id", $state)->first();
+                        $application = CustomerPaymentAccount::query()->where("id", $state)->first();
                         $payment_amount = 0;
                         if($application->hasMonthlyPayment() == false)//initial payment (Down payment)
                         {
